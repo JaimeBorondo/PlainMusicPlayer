@@ -43,3 +43,6 @@ Temporary Items
 .apdisk
 *.sdf
 PlainMusicPlayer/PlainMusicPlayer.opensdf
+*.obj
+PlainMusicPlayer/Debug/*
+PlainMusicPlayer/Release/*
