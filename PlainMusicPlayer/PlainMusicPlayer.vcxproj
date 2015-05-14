@@ -57,7 +57,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>id3lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>id3lib.lib;fmod_vc.lib;fmod64_vc.lib;fmodL_vc.lib;fmodL64_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Song.cpp" />
+    <ClCompile Include="SoundSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameIDToText.h" />
@@ -91,6 +92,7 @@
     <ClInclude Include="inc\fmod\fmod_errors.h" />
     <ClInclude Include="inc\fmod\fmod_output.h" />
     <ClInclude Include="Song.h" />
+    <ClInclude Include="SoundSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

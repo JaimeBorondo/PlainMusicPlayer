@@ -1,4 +1,6 @@
 #include "Song.h"
+#include "SoundSystem.h"
+
 #include <unordered_map>
 #include <id3\tag.h>
 #include <Windows.h>
@@ -10,6 +12,36 @@ Song::Song(const SongInfo &info) : info_(info)
 
 Song::~Song()
 {}
+
+void Song::Play()
+{
+	SoundSystem::Play(&channel_, info_.get_filename());
+}
+
+
+unsigned Song::GetPosition()
+{
+	unsigned retval = 0;
+
+	if (channel_ != nullptr)
+		channel_->getPosition(&retval, FMOD_TIMEUNIT_MS);
+
+	return retval/1000;
+}
+
+//pct €[0.0f,1.0f]
+void Song::SetPosition(float pct)
+{
+	if (channel_ != nullptr)
+		channel_->setPosition(info_.get_length() * static_cast<unsigned>(pct * 1000), FMOD_TIMEUNIT_MS);
+}
+
+unsigned Song::GetLength()
+{
+	return info_.get_length();
+}
+
+//TODO, Separate these into files per class
 
 // Convert a wide Unicode string to an UTF8 string
 std::string utf8_encode(const std::wstring &wstr)
@@ -62,42 +94,42 @@ SongInfo::SongInfo(const std::string &filename) : filename_(filename)
 
 SongInfo::~SongInfo(){}
 
-const std::string &SongInfo::get_filename()
+const std::string &SongInfo::get_filename() const
 {
 	return filename_;
 }
 
-const std::wstring &SongInfo::get_title()
+const std::wstring &SongInfo::get_title() const 
 {
 	return title_;
 }
 
-const std::wstring &SongInfo::get_artist()
+const std::wstring &SongInfo::get_artist() const 
 {
 	return artist_;
 }
 
-const std::wstring &SongInfo::get_album()
+const std::wstring &SongInfo::get_album() const 
 {
 	return album_;
 }
 
-const unsigned &SongInfo::get_length()
+const unsigned &SongInfo::get_length() const 
 {
 	return length_;
 }
 
-const unsigned &SongInfo::get_bitrate()
+const unsigned &SongInfo::get_bitrate() const 
 {
 	return bitrate_;
 }
 
-const unsigned &SongInfo::get_frequency()
+const unsigned &SongInfo::get_frequency() const 
 {
 	return frequency_;
 }
 
-bool SongInfo::is_stereo()
+bool SongInfo::is_stereo() const 
 {
 	return stereo_;
 }

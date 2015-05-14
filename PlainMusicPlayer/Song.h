@@ -11,14 +11,14 @@ public:
 	SongInfo(const std::string &filename);
 	~SongInfo();
 
-	const std::string &get_filename();
-	const std::wstring &get_title();
-	const std::wstring &get_artist();
-	const std::wstring &get_album();
-	const unsigned &get_length();
-	const unsigned &get_bitrate();
-	const unsigned &get_frequency();
-	bool is_stereo();
+	const std::string &get_filename() const;
+	const std::wstring &get_title() const;
+	const std::wstring &get_artist() const;
+	const std::wstring &get_album() const;
+	const unsigned &get_length() const;
+	const unsigned &get_bitrate() const;
+	const unsigned &get_frequency() const;
+	bool is_stereo() const;
 
 private:
 	std::string filename_;
@@ -37,6 +37,11 @@ class Song
 public:
 	Song(const SongInfo &info);
 	~Song();
+
+	void Play();
+	unsigned GetPosition();
+	void SetPosition(float pct);
+	unsigned GetLength();
 private:
 	const SongInfo &info_;
 	FMOD::Channel *channel_;
