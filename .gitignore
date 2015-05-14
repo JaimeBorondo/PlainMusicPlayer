@@ -46,3 +46,4 @@ PlainMusicPlayer/PlainMusicPlayer.opensdf
 *.obj
 PlainMusicPlayer/Debug/*
 PlainMusicPlayer/Release/*
+*.mp3

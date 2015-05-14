@@ -6,19 +6,19 @@
 class SongInfo
 {
 public:
-	SongInfo(const std::string &filename);
+	SongInfo(const std::wstring &filename);
 	~SongInfo();
 
-	const std::string &get_filename();
-	const std::string &get_name();
-	const std::string &get_artist();
-	const std::string &get_album();
+	const std::wstring &get_filename();
+	const std::wstring &get_name();
+	const std::wstring &get_artist();
+	const std::wstring &get_album();
 
 private:
-	std::string filename_;
-	std::string name_;
-	std::string artist_;
-	std::string album_;
+	std::wstring filename_;
+	std::wstring name_;
+	std::wstring artist_;
+	std::wstring album_;
 };
 
 class Song

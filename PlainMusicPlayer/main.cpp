@@ -1,35 +1,25 @@
-#include "inc\id3\tag.h"
-#include <unordered_map>
+﻿#include "Song.h"
+#include <iostream>
+#include <string>
+#include <fstream>
 
 int main(void)
 {
 	//TODO, move this into an actual parser for tags
+	SongInfo baby(L"killbill.mp3");
+	SongInfo say(L"yes.mp3");
 
-	std::unordered_map<std::string, std::string> song_tag;
+	std::wofstream file(L"file.txt");
 
-	ID3_Tag mytag("song.mp3");
-	const Mp3_Headerinfo *h = mytag.GetMp3HeaderInfo();
-	ID3_Tag::Iterator *it = mytag.CreateIterator();
-	ID3_Frame *fr = nullptr;
-
-	while (NULL != (fr = it->GetNext()))
-	{
-		ID3_FrameInfo fi;
-		std::string identifier = fi.Description(fr->GetID());
-
-		ID3_Frame::Iterator* iter = fr->CreateIterator();
-		ID3_Field* myField = NULL;
-		while (NULL != (myField = iter->GetNext()))
-		{
-			ID3_FieldID id = myField->GetID();
-			
-			if (myField->GetType() == ID3_FieldType::ID3FTY_TEXTSTRING)
-			{
-				song_tag[identifier] = myField->GetRawText();
-			}
-		}
-		std::cout << std::endl;
-	}
+	std::wcout << L"Song 1 :" << std::endl;
+	std::wcout << L"\tArtist : " << baby.get_artist() << std::endl;
+	std::wcout << L"\tTitle : " << baby.get_name() << std::endl;
+	std::wcout << L"\tAlbum : " << baby.get_album() << std::endl;
+				  
+	std::wcout << L"Song 2 :" << std::endl;
+	std::wcout << L"\tArtist : " << say.get_artist() << std::endl;
+	std::wcout << L"\tTitle : " << say.get_name() << std::endl;
+	std::wcout << L"\tAlbum : " << say.get_album() << std::endl;
 
 	return 0;
 }
