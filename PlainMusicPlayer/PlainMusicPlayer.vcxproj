@@ -90,30 +90,7 @@
     <ClInclude Include="inc\fmod\fmod_dsp_effects.h" />
     <ClInclude Include="inc\fmod\fmod_errors.h" />
     <ClInclude Include="inc\fmod\fmod_output.h" />
-    <ClInclude Include="inc\id3.h" />
-    <ClInclude Include="inc\id3\field.h" />
-    <ClInclude Include="inc\id3\globals.h" />
-    <ClInclude Include="inc\id3\helpers.h" />
-    <ClInclude Include="inc\id3\id3lib_frame.h" />
-    <ClInclude Include="inc\id3\id3lib_streams.h" />
-    <ClInclude Include="inc\id3\id3lib_strings.h" />
-    <ClInclude Include="inc\id3\io_decorators.h" />
-    <ClInclude Include="inc\id3\io_helpers.h" />
-    <ClInclude Include="inc\id3\io_strings.h" />
-    <ClInclude Include="inc\id3\misc_support.h" />
-    <ClInclude Include="inc\id3\reader.h" />
-    <ClInclude Include="inc\id3\readers.h" />
-    <ClInclude Include="inc\id3\sized_types.h" />
-    <ClInclude Include="inc\id3\tag.h" />
-    <ClInclude Include="inc\id3\utils.h" />
-    <ClInclude Include="inc\id3\writer.h" />
-    <ClInclude Include="inc\id3\writers.h" />
     <ClInclude Include="Song.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="inc\id3\id3lib_bitset" />
-    <None Include="inc\id3\Makefile.am" />
-    <None Include="inc\id3\Makefile.in" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
