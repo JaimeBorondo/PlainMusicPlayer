@@ -9,11 +9,12 @@ if I see that I can expand it easily, maybe add a few features on top of that.
 ##  Libraries used
 Here is a list of the libraries I am currently using or plan to use while 
 developing this application.
+
 #### FMOD
  For audio playback and channel management
         
-#### id3lib
+#### TagLib
 For extracting the id3 tags (if any are present) inside audio files.
         
-#### JUCE (GUI only)
+#### JUCE (GUI only, possible)
 I *really* don't want to deal with creating a GUI from scratch in Windows
