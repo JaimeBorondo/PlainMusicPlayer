@@ -3,6 +3,9 @@
 #include <locale>
 #include <codecvt>
 
+#define TAGLIB_EXPORT
+#define TAGLIB_EXPORT_H
+
 //Songinfo doesnt need to be playable, only contain information about the track,
 //An actual song will be created from it, and will store its channel.
 class SongInfo
