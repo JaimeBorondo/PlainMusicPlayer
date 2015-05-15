@@ -11,10 +11,11 @@
 class SongInfo
 {
 public:
-	SongInfo(const std::string &filename);
+	SongInfo();
+	SongInfo(const std::wstring &filename);
 	~SongInfo();
 
-	const std::string &get_filename() const;
+	const std::wstring &get_filename() const;
 	const std::wstring &get_title() const;
 	const std::wstring &get_artist() const;
 	const std::wstring &get_album() const;
@@ -24,7 +25,7 @@ public:
 	bool is_stereo() const;
 
 private:
-	std::string filename_;
+	std::wstring filename_;
 	std::wstring title_;
 	std::wstring artist_;
 	std::wstring album_;
@@ -42,6 +43,11 @@ public:
 	~Song();
 
 	void Play();
+	void Pause(); //this is a toggle for now
+	void Stop();
+
+	bool isPlaying();
+
 	unsigned GetPosition();
 	void SetPosition(float pct);
 	unsigned GetLength();

@@ -18,6 +18,26 @@ void Song::Play()
 	SoundSystem::Play(&channel_, info_.get_filename());
 }
 
+void Song::Pause()
+{
+	SoundSystem::Pause(channel_);
+}
+
+void Song::Stop()
+{
+	SoundSystem::Stop(channel_);
+}
+
+
+bool Song::isPlaying()
+{
+	bool isplaying = false;
+
+	if (channel_ != nullptr)
+		channel_->isPlaying(&isplaying);
+
+	return isplaying;
+}
 
 unsigned Song::GetPosition()
 {
@@ -43,7 +63,9 @@ unsigned Song::GetLength()
 
 //TODO, Separate these into files per class
 
-SongInfo::SongInfo(const std::string &filename) : filename_(filename)
+
+SongInfo::SongInfo(){}
+SongInfo::SongInfo(const std::wstring &filename) : filename_(filename)
 {
 	TagLib::FileRef f(filename.c_str());
 	album_ = f.tag()->album().toWString().data();
@@ -55,10 +77,9 @@ SongInfo::SongInfo(const std::string &filename) : filename_(filename)
 	length_ = f.audioProperties()->length();
 	stereo_ = f.audioProperties()->channels() > 1;
 }
-
 SongInfo::~SongInfo(){}
 
-const std::string &SongInfo::get_filename() const
+const std::wstring &SongInfo::get_filename() const
 {
 	return filename_;
 }
