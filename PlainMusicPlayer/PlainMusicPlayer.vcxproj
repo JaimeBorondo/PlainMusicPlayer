@@ -76,7 +76,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Library.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Playlist.cpp" />
     <ClCompile Include="Song.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
   </ItemGroup>
@@ -91,6 +93,8 @@
     <ClInclude Include="inc\fmod\fmod_dsp_effects.h" />
     <ClInclude Include="inc\fmod\fmod_errors.h" />
     <ClInclude Include="inc\fmod\fmod_output.h" />
+    <ClInclude Include="Library.h" />
+    <ClInclude Include="Playlist.h" />
     <ClInclude Include="Song.h" />
     <ClInclude Include="SoundSystem.h" />
   </ItemGroup>
