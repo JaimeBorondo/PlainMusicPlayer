@@ -1,6 +1,12 @@
 #include "Library.h"
 #include <algorithm>
 
+//Indexed by filename, pointer validity remains between insertions
+std::map<std::wstring, SongInfo> TopLevelLibrary::song_db_;
+
+std::map<std::wstring, Library> TopLevelLibrary::by_artist_;
+std::map<std::wstring, Library> TopLevelLibrary::by_album_;
+
 Library::Library()
 {
     //Nothing to do here yet
@@ -25,7 +31,7 @@ Playlist Library::ToPlaylist()
 }
 
 //TopLevelLibrary definition begins here
-TopLevelLibrary::TopLevelLibrary(const std::vector<std::wstring> &files)
+void TopLevelLibrary::AddSongs(const std::vector<std::wstring> &files)
 {
 	//Go through each of the files
 	for (const std::wstring &ws : files)
@@ -38,11 +44,6 @@ TopLevelLibrary::TopLevelLibrary(const std::vector<std::wstring> &files)
 		by_artist_[tmp.get_artist()].AddSong(&song_db_[ws]);
 		by_album_[tmp.get_album()].AddSong(&song_db_[ws]);
 	}
-}
-
-TopLevelLibrary::~TopLevelLibrary()
-{
-
 }
 
 std::vector<std::wstring> TopLevelLibrary::GetArtists()

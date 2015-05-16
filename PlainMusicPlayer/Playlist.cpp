@@ -9,6 +9,20 @@ const std::vector<const SongInfo *> &PlaylistInfo::GetSongList() const
 {return songs_;}
 
 //Playlist definition starts here
+
+Playlist::Playlist()
+{
+    current_song_ = nullptr;
+    current_song_idx_ = 0;
+}
+
+Playlist::Playlist(const Playlist &pl)
+{
+    current_song_ = nullptr;
+    current_song_idx_ = 0;
+    songs_ = pl.songs_;
+}
+
 Playlist::Playlist(const PlaylistInfo &pi)
 {
 	current_song_ = nullptr;

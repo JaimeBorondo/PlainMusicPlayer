@@ -3,10 +3,14 @@
 #include "qtimer.h"
 
 #include "SoundSystem.h"
+#include "PlaylistManager.h"
+#include "Library.h"
+
+#include <QFileDialog>
 
 void MainWindow::Update()
 {
-    //PlaylistManager.Update();
+    PlaylistManager::UpdateCurrentPlaylist();
     SoundSystem::Update();
 }
 
@@ -21,9 +25,19 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->setInterval(16);
     timer->start();
     ui->setupUi(this);
+
+    //We will now try to add a button that makes a song play, just for fun
+    connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(buttonclicked()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::buttonclicked()
+{
+    QString str = QFileDialog::getOpenFileName();
+
+    SongInfo si(str.toStdWString());
 }

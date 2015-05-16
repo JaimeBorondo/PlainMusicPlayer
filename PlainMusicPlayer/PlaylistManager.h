@@ -6,10 +6,11 @@
 class PlaylistManager
 {
 public:
-   static void UpdateCurrentPlaylist();
+   static void UpdateCurrentPlaylist(void);
+   static void SetCurrentPlaylist(const Playlist &pl);
 
 private:
-
+   static Playlist current_;
 };
 
 #endif // PLAYLISTMANAGER_H

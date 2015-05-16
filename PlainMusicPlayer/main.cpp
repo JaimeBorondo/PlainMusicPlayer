@@ -2,6 +2,7 @@
 #include <QApplication>
 
 #include "SoundSystem.h"
+#include "Library.h"
 
 int main(int argc, char *argv[])
 {

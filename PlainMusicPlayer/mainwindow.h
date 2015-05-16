@@ -17,6 +17,10 @@ public:
 public slots:
     void Update();
 
+
+private slots:
+    void buttonclicked();
+
 private:
     Ui::MainWindow *ui;
 };

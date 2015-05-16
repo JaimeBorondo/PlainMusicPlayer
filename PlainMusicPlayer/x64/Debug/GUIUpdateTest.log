@@ -1,0 +1,28 @@
+﻿Build started 5/16/2015 8:33:06 PM.
+     1>Project "C:\Users\Boron\Documents\GitHub\PlainMusicPlayer\PlainMusicPlayer\GUIUpdateTest.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I. /Iinc\taglib /Iinc\fmod /IC:\Qt\5.4\msvc2013_64\include /IC:\Qt\5.4\msvc2013_64\include\QtWidgets /IC:\Qt\5.4\msvc2013_64\include\QtGui /IC:\Qt\5.4\msvc2013_64\include\QtANGLE /IC:\Qt\5.4\msvc2013_64\include\QtCore /Idebug /I. /I"C:\Qt\5.4\msvc2013_64\mkspecs\win32-msvc2013" /I.\GeneratedFiles /Zi /nologo /W3 /WX- /Od /D _WINDOWS /D UNICODE /D WIN32 /D WIN64 /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 GeneratedFiles\Debug\moc_mainwindow.cpp Library.cpp Playlist.cpp PlaylistManager.cpp Song.cpp SoundSystem.cpp main.cpp mainwindow.cpp
+         moc_mainwindow.cpp
+         Library.cpp
+         Playlist.cpp
+         PlaylistManager.cpp
+         Song.cpp
+         SoundSystem.cpp
+         main.cpp
+         mainwindow.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"debug\\GUIUpdateTest.exe" /NOLOGO /LIBPATH:C:\Qt\5.4\msvc2013_64\lib /LIBPATH:C:\Qt\5.4\msvc2013_64\lib /LIBPATH:C:\Qt\5.4\msvc2013_64\lib /LIBPATH:C:\Users\Boron\Documents\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\ C:\Qt\5.4\msvc2013_64\lib\qtmaind.lib shell32.lib C:\Qt\5.4\msvc2013_64\lib\Qt5Cored.lib C:\Users\Boron\Documents\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\tag.lib C:\Users\Boron\Documents\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod_vc.lib C:\Users\Boron\Documents\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod64_vc.lib C:\Users\Boron\Documents\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmodL64_vc.lib C:\Qt\5.4\msvc2013_64\lib\Qt5Widgetsd.lib C:\Qt\5.4\msvc2013_64\lib\Qt5Guid.lib C:\Qt\5.4\msvc2013_64\lib\Qt5Cored.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"debug\GUIUpdateTest.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Debug\moc_mainwindow.obj
+         x64\Debug\Library.obj
+         x64\Debug\Playlist.obj
+         x64\Debug\PlaylistManager.obj
+         x64\Debug\Song.obj
+         x64\Debug\SoundSystem.obj
+         x64\Debug\main.obj
+         x64\Debug\mainwindow.obj
+         GUIUpdateTest.vcxproj -> C:\Users\Boron\Documents\GitHub\PlainMusicPlayer\PlainMusicPlayer\debug\GUIUpdateTest.exe
+     1>Done Building Project "C:\Users\Boron\Documents\GitHub\PlainMusicPlayer\PlainMusicPlayer\GUIUpdateTest.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.26

@@ -18,6 +18,8 @@ private:
 class Playlist
 {
 public:
+    Playlist();
+    Playlist(const Playlist &pl);
 	Playlist(const PlaylistInfo &pi);
 	~Playlist();
 
@@ -32,9 +34,9 @@ public:
 	void Shuffle();
 
 private:
-	//might seem redundant, but I like the abstraction
 	void UpdateCurrentSong();
 	unsigned current_song_idx_;
-	std::vector<const SongInfo *> songs_; 
+    //might seem redundant, but I like the abstraction
+    std::vector<const SongInfo *> songs_;
 	Song *current_song_;
 };

@@ -23,20 +23,19 @@ class TopLevelLibrary
 {
 public:
 	//Should build a sublibrary with all songs, and sublibraries grouped by artist and by album
-	TopLevelLibrary(const std::vector<std::wstring> &files);
-	~TopLevelLibrary();
+    static void AddSongs(const std::vector<std::wstring> &files);
 
-	std::vector<std::wstring> GetArtists();
-	std::vector<std::wstring> GetAlbums();
+    static std::vector<std::wstring> GetArtists();
+    static std::vector<std::wstring> GetAlbums();
 	
-	Playlist PlaylistFromArtist(const std::wstring &artist);
-	Playlist PlaylistFromAlbum(const std::wstring &album);
+    static Playlist PlaylistFromArtist(const std::wstring &artist);
+    static Playlist PlaylistFromAlbum(const std::wstring &album);
 
 private:
 	//Indexed by filename, pointer validity remains between insertions
-	std::map<std::wstring, SongInfo> song_db_;
+    static std::map<std::wstring, SongInfo> song_db_;
 
-	std::map<std::wstring, Library> by_artist_;
-	std::map<std::wstring, Library> by_album_;
+    static std::map<std::wstring, Library> by_artist_;
+    static std::map<std::wstring, Library> by_album_;
 };
 
