@@ -2,7 +2,7 @@
 #include "SoundSystem.h"
 
 #include <unordered_map>
-#include <taglib\fileref.h>
+#include <fileref.h>
 #include <Windows.h>
 
 Song::Song(const SongInfo &info) : info_(info)
@@ -49,7 +49,6 @@ unsigned Song::GetPosition()
 	return retval/1000;
 }
 
-//pct €[0.0f,1.0f]
 void Song::SetPosition(float pct)
 {
 	if (channel_ != nullptr)

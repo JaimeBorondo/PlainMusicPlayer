@@ -3,7 +3,7 @@
 
 Library::Library()
 {
-	//Nothing to do here
+    //Nothing to do here yet
 }
 
 void Library::AddSong(const SongInfo *song)

@@ -39,7 +39,7 @@ void Playlist::NextSong()
 
 void Playlist::PreviousSong()
 {
-	current_song_idx_ = (current_song_idx_ == 0) ? songs_.size() - 1 : current_song_idx_ - 1;
+	current_song_idx_ = (current_song_idx_ == 0) ? static_cast<unsigned>(songs_.size()) - 1 : current_song_idx_ - 1;
 	UpdateCurrentSong();
 }
 

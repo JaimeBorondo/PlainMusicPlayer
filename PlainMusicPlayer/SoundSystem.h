@@ -1,4 +1,4 @@
-#include <fmod\fmod.hpp>
+#include <fmod.hpp>
 #include <string>
 
 class SoundSystem
