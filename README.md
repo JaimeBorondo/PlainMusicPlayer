@@ -16,5 +16,5 @@ developing this application.
 #### TagLib
 For extracting the id3 tags (if any are present) inside audio files.
         
-#### JUCE (GUI only, possible)
+#### GUI library (TBD)
 I *really* don't want to deal with creating a GUI from scratch in Windows
