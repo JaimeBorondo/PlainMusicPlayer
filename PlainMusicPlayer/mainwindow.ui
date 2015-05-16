@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>816</width>
+    <height>404</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>90</y>
+      <x>10</x>
+      <y>20</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -27,7 +27,17 @@
      <enum>Qt::NoContextMenu</enum>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Add Song(s)</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>691</width>
+      <height>321</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -36,9 +46,12 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>816</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">

@@ -7,6 +7,16 @@
 #include "Library.h"
 
 #include <QFileDialog>
+#include <QStringListModel>
+#include <QStandardItemModel>
+
+#include <fstream>
+#include <iostream>
+#include <locale>
+#include <codecvt>
+
+#include <fcntl.h>
+#include <io.h>
 
 void MainWindow::Update()
 {
@@ -37,7 +47,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::buttonclicked()
 {
-    QString str = QFileDialog::getOpenFileName();
+    QStringList l = QFileDialog::getOpenFileNames();
+    std::vector<std::wstring> filenames;
 
-    SongInfo si(str.toStdWString());
+    for(QString &s : l)
+        filenames.push_back(s.toStdWString());
+
+    TopLevelLibrary::AddSongs(filenames);
+
+    ui->tableWidget->setColumnCount(5);
 }

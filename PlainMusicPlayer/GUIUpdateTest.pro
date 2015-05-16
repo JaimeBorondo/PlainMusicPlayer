@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     Playlist.cpp \
     Song.cpp \
     SoundSystem.cpp \
-    PlaylistManager.cpp
+    PlaylistManager.cpp \
+    SongInfoPTRModel.cpp
 
 HEADERS  += mainwindow.h \
     Library.h \
     Playlist.h \
     Song.h \
     SoundSystem.h \
-    PlaylistManager.h
+    PlaylistManager.h \
+    SongInfoPTRModel.h
 
 FORMS    += mainwindow.ui
 

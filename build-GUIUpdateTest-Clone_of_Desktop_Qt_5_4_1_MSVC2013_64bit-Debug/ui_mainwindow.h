@@ -13,10 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QColumnView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -28,6 +30,9 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QPushButton *pushButton;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QColumnView *columnView;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -36,17 +41,37 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(400, 300);
+        MainWindow->resize(816, 404);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(140, 90, 80, 21));
+        pushButton->setGeometry(QRect(10, 20, 80, 21));
         pushButton->setContextMenuPolicy(Qt::NoContextMenu);
+        scrollArea = new QScrollArea(centralWidget);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setGeometry(QRect(100, 10, 701, 331));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 699, 329));
+        columnView = new QColumnView(scrollAreaWidgetContents);
+        columnView->setObjectName(QStringLiteral("columnView"));
+        columnView->setEnabled(true);
+        columnView->setGeometry(QRect(5, 1, 691, 331));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(columnView->sizePolicy().hasHeightForWidth());
+        columnView->setSizePolicy(sizePolicy);
+        columnView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        columnView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        scrollArea->setWidget(scrollAreaWidgetContents);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 20));
+        menuBar->setGeometry(QRect(0, 0, 816, 20));
+        menuBar->setNativeMenuBar(true);
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -63,7 +88,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "PushButton", 0));
+        pushButton->setText(QApplication::translate("MainWindow", "Add Song(s)", 0));
     } // retranslateUi
 
 };
