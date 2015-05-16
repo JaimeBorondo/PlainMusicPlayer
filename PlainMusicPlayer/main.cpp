@@ -8,27 +8,37 @@
 #include <fcntl.h>
 
 #include "SoundSystem.h"
+#include "Playlist.h"
+#include "Library.h"
 
 int main(void)
 {
 	SoundSystem::Initialize();
 
-	SongInfo kb(L"라라랄.mp3");
-	Song kb_playable(kb);
+	TopLevelLibrary top(
+	{
+		L"01 The Boys.mp3",
+		L"02 텔레파시 (Telepathy).mp3",
+		L"03 Say Yes.mp3",
+		L"04 Trick.mp3",
+		L"05 봄날 (How Great Is Your Love).mp3",
+		L"06 My J.mp3",
+		L"07 Oscar.mp3",
+		L"08 Top Secret.mp3",
+		L"09 Lazy Girl (Dolce Far Niente).mp3",
+		L"10 제자리걸음 (Sunflower).mp3",
+		L"11 비타민 (Vitamin).mp3"
+	}
+	);
 
-	kb_playable.Play();
-	int i = 0;
+	Playlist theboys = top.PlaylistFromAlbum(top.GetAlbums()[0]);
+	theboys.Shuffle();
+	theboys.SetCurrentSong(0);
 
-	unsigned total_seconds = kb_playable.GetLength();
 	while (true)
 	{
 		SoundSystem::Update();
-		i++;
-
-		if (i % 200000 == 0)
-		{
-			std::cout << "Time : " << kb_playable.GetPosition() << " / " << total_seconds << std::endl;
-		}
+		theboys.Update();
 	}
 	
 	return 0;

@@ -2,10 +2,10 @@
 #include "SoundSystem.h"
 #include <algorithm>
 
-PlaylistInfo::PlaylistInfo(const std::vector<SongInfo *> &songs) : songs_(songs)
+PlaylistInfo::PlaylistInfo(const std::vector<const SongInfo *> &songs) : songs_(songs)
 {}
 
-const std::vector<SongInfo *> &PlaylistInfo::GetSongList() const
+const std::vector<const SongInfo *> &PlaylistInfo::GetSongList() const
 {return songs_;}
 
 //Playlist definition starts here
@@ -33,7 +33,7 @@ void Playlist::SetCurrentSong(unsigned idx)
 
 void Playlist::NextSong()
 {
-	current_song_idx_ = ((current_song_idx_ + 1) % songs_.size()) - 1;
+	current_song_idx_ = ((current_song_idx_ + 1) % songs_.size());
 	UpdateCurrentSong();
 }
 
@@ -81,7 +81,7 @@ void Playlist::Shuffle()
 	else //We want to shuffle 'around' the current song
 	{
 		//Extract the current song
-		SongInfo *s = songs_[current_song_idx_];
+		const SongInfo *s = songs_[current_song_idx_];
 		songs_.erase(songs_.begin() + current_song_idx_);
 		//Shuffle remaining elements
 		std::random_shuffle(songs_.begin(), songs_.end());

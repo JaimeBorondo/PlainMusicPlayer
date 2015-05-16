@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Song.h"
 
 #include <vector>
@@ -5,10 +7,10 @@
 class PlaylistInfo
 {
 public:
-	PlaylistInfo(const std::vector<SongInfo *> &songs);
-	const std::vector<SongInfo *> &GetSongList() const;
+	PlaylistInfo(const std::vector<const SongInfo *> &songs);
+	const std::vector<const SongInfo *> &GetSongList() const;
 private:
-	std::vector<SongInfo *> songs_;
+	std::vector<const SongInfo *> songs_;
 };
 
 //A playlist will be initialized from a playlist info, 
@@ -33,6 +35,6 @@ private:
 	//might seem redundant, but I like the abstraction
 	void UpdateCurrentSong();
 	unsigned current_song_idx_;
-	std::vector<SongInfo *> songs_; 
+	std::vector<const SongInfo *> songs_; 
 	Song *current_song_;
 };

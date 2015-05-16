@@ -18,6 +18,12 @@ void Library::RemoveSong(const SongInfo *song)
 		{return cmp->get_filename() == song->get_filename();});
 }
 
+Playlist Library::ToPlaylist()
+{
+	PlaylistInfo pinfo(songs_);
+	return Playlist(pinfo);
+}
+
 //TopLevelLibrary definition begins here
 TopLevelLibrary::TopLevelLibrary(const std::vector<std::wstring> &files)
 {
@@ -32,4 +38,51 @@ TopLevelLibrary::TopLevelLibrary(const std::vector<std::wstring> &files)
 		by_artist_[tmp.get_artist()].AddSong(&song_db_[ws]);
 		by_album_[tmp.get_album()].AddSong(&song_db_[ws]);
 	}
+}
+
+TopLevelLibrary::~TopLevelLibrary()
+{
+
+}
+
+std::vector<std::wstring> TopLevelLibrary::GetArtists()
+{
+	std::vector<std::wstring> ret;
+
+	for (const std::pair<std::wstring, Library> &p : by_artist_)
+		ret.push_back(p.first);
+
+	return ret;
+}
+
+std::vector<std::wstring> TopLevelLibrary::GetAlbums()
+{
+	std::vector<std::wstring> ret;
+
+	for (const std::pair<std::wstring, Library> &p : by_album_)
+		ret.push_back(p.first);
+
+	return ret;
+}
+	
+Playlist TopLevelLibrary::PlaylistFromArtist(const std::wstring &artist)
+{
+	std::map<std::wstring, Library>::iterator find;
+	find = by_artist_.find(artist);
+
+	if (find != by_artist_.end())
+		return find->second.ToPlaylist();
+	else
+		return Playlist(PlaylistInfo({})); //Empty playlist
+}
+
+Playlist TopLevelLibrary::PlaylistFromAlbum(const std::wstring &album)
+{
+	std::map<std::wstring, Library>::iterator find;
+	find = by_album_.find(album);
+
+	if (find != by_album_.end())
+		return find->second.ToPlaylist();
+	else
+		return Playlist(PlaylistInfo({})); //Empty playlist
 }
