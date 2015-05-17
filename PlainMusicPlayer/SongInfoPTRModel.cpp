@@ -20,6 +20,13 @@ int SongInfoPTRModel::columnCount(const QModelIndex &parent) const
 
 QVariant SongInfoPTRModel::data(const QModelIndex &index, int role) const
 {
+    if(role == Qt::TextAlignmentRole)
+        switch(index.column())
+        {
+        case 0: case 1: case 2: return Qt::AlignLeft;
+        case 3: case 4: return Qt::AlignRight;
+        }
+    
     if(role != Qt::DisplayRole && role != Qt::EditRole)
         return QVariant();
 
@@ -27,20 +34,27 @@ QVariant SongInfoPTRModel::data(const QModelIndex &index, int role) const
 
     switch(index.column())
     {
-    case 0: return p->get_title();
-    case 1: return p->get_artist();
-    case 2: return p->get_album();
-    case 3: return seconds_to_formatted_string(p->get_length());
-    case 4: return std::to_wstring(p->get_bitrate()/1000) + L"kbps";
+    case 0: return QString::fromWCharArray(p->get_title().c_str());
+    case 1: return QString::fromWCharArray(p->get_artist().c_str());
+    case 2: return QString::fromWCharArray(p->get_album().c_str());
+    case 3: return QString::fromWCharArray(seconds_to_formatted_string(p->get_length()).c_str());
+    case 4: return QString::fromWCharArray((std::to_wstring(p->get_bitrate()) + L"kbps").c_str());
     default: return QVariant();
     };
 }
 
 QVariant SongInfoPTRModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
+{   
         if (orientation != Qt::Horizontal)
             return QVariant();
 
+        if(role == Qt::TextAlignmentRole)
+            switch(section)
+            {
+            case 0: case 1: case 2: return Qt::AlignLeft;
+            case 3: case 4: return Qt::AlignRight;
+            }
+        
         if (role != Qt::DisplayRole)
             return QVariant();
 

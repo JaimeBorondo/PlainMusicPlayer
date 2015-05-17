@@ -31,8 +31,10 @@ Playlist Library::ToPlaylist()
 }
 
 //TopLevelLibrary definition begins here
-void TopLevelLibrary::AddSongs(const std::vector<std::wstring> &files)
+std::vector<const SongInfo *> TopLevelLibrary::AddSongs(const std::vector<std::wstring> &files)
 {
+    std::vector<const SongInfo *> ret;
+    
 	//Go through each of the files
 	for (const std::wstring &ws : files)
 	{
@@ -40,10 +42,14 @@ void TopLevelLibrary::AddSongs(const std::vector<std::wstring> &files)
 		//add them to our main library
 		song_db_[ws] = tmp;
 
+        ret.push_back(&song_db_[ws]);
+        
 		//And add their pointer to their respective artist and album sublibraries
 		by_artist_[tmp.get_artist()].AddSong(&song_db_[ws]);
 		by_album_[tmp.get_album()].AddSong(&song_db_[ws]);
 	}
+    
+    return ret;
 }
 
 std::vector<std::wstring> TopLevelLibrary::GetArtists()

@@ -13,13 +13,13 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QColumnView>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -30,9 +30,9 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QPushButton *pushButton;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QColumnView *columnView;
+    QTableView *tableView;
+    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -48,29 +48,32 @@ public:
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(10, 20, 80, 21));
         pushButton->setContextMenuPolicy(Qt::NoContextMenu);
-        scrollArea = new QScrollArea(centralWidget);
-        scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(100, 10, 701, 331));
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 699, 329));
-        columnView = new QColumnView(scrollAreaWidgetContents);
-        columnView->setObjectName(QStringLiteral("columnView"));
-        columnView->setEnabled(true);
-        columnView->setGeometry(QRect(5, 1, 691, 331));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(columnView->sizePolicy().hasHeightForWidth());
-        columnView->setSizePolicy(sizePolicy);
-        columnView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        columnView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
-        scrollArea->setWidget(scrollAreaWidgetContents);
+        tableView = new QTableView(centralWidget);
+        tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setGeometry(QRect(100, 10, 701, 341));
+        tableView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        tableView->setAlternatingRowColors(true);
+        tableView->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableView->setTextElideMode(Qt::ElideNone);
+        tableView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+        tableView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+        tableView->setShowGrid(true);
+        tableView->setWordWrap(false);
+        tableView->horizontalHeader()->setStretchLastSection(true);
+        gridLayoutWidget = new QWidget(centralWidget);
+        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
+        gridLayoutWidget->setGeometry(QRect(30, 120, 160, 80));
+        gridLayout = new QGridLayout(gridLayoutWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setSizeConstraint(QLayout::SetMaximumSize);
+        gridLayout->setContentsMargins(0, 0, 0, 0);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 816, 20));
+        menuBar->setGeometry(QRect(0, 0, 816, 21));
         menuBar->setNativeMenuBar(true);
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);

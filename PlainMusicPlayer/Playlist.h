@@ -32,6 +32,8 @@ public:
 	void Pause();
 
 	void Shuffle();
+    
+    const std::vector<const SongInfo *> &GetSongs();
 
 private:
 	void UpdateCurrentSong();

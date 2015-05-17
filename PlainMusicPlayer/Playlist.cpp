@@ -105,3 +105,9 @@ void Playlist::Shuffle()
 		std::swap(songs_.begin() + current_song_idx_, songs_.end() - 1);
 	}
 }
+
+
+const std::vector<const SongInfo *> &Playlist::GetSongs()
+{
+    return songs_;
+}

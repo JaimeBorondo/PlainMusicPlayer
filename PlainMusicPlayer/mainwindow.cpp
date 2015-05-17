@@ -5,15 +5,12 @@
 #include "SoundSystem.h"
 #include "PlaylistManager.h"
 #include "Library.h"
+#include "SongInfoPTRModel.h"
 
 #include <QFileDialog>
 #include <QStringListModel>
 #include <QStandardItemModel>
-
-#include <fstream>
-#include <iostream>
-#include <locale>
-#include <codecvt>
+#include <QGridLayout>
 
 #include <fcntl.h>
 #include <io.h>
@@ -53,7 +50,12 @@ void MainWindow::buttonclicked()
     for(QString &s : l)
         filenames.push_back(s.toStdWString());
 
-    TopLevelLibrary::AddSongs(filenames);
+    std::vector<const SongInfo *> songs = TopLevelLibrary::AddSongs(filenames);
 
-    ui->tableWidget->setColumnCount(5);
+    QTableView *view = ui->tableView;
+    
+    for(const SongInfo *sinfo : songs)
+        mmodel.append(sinfo);
+    
+    view->setModel(&mmodel);
 }

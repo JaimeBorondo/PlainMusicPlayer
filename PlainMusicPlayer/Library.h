@@ -23,7 +23,7 @@ class TopLevelLibrary
 {
 public:
 	//Should build a sublibrary with all songs, and sublibraries grouped by artist and by album
-    static void AddSongs(const std::vector<std::wstring> &files);
+    static std::vector<const SongInfo *> AddSongs(const std::vector<std::wstring> &files);
 
     static std::vector<std::wstring> GetArtists();
     static std::vector<std::wstring> GetAlbums();
