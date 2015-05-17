@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //We will now try to add a button that makes a song play, just for fun
     connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(buttonclicked()));
+    connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));
 }
 
 MainWindow::~MainWindow()
@@ -58,4 +59,11 @@ void MainWindow::buttonclicked()
         mmodel.append(sinfo);
     
     view->setModel(&mmodel);
+}
+
+void MainWindow::SongDoubleClicked(const QModelIndex &i)
+{
+    const SongInfo *sptr = mmodel.GetSongInfoPTR(i.row());
+    PlaylistInfo pl({sptr});
+    PlaylistManager::SetCurrentPlaylist(pl);
 }

@@ -21,6 +21,7 @@ public slots:
 
 private slots:
     void buttonclicked();
+    void SongDoubleClicked(const QModelIndex &i);
 
 private:
     Ui::MainWindow *ui;

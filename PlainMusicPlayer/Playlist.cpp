@@ -59,7 +59,8 @@ void Playlist::PreviousSong()
 
 void Playlist::Pause()
 {
-	current_song_->Pause();
+	if(current_song_ != nullptr)
+        current_song_->Pause();
 }
 
 void Playlist::UpdateCurrentSong()

@@ -9,6 +9,7 @@ void PlaylistManager::UpdateCurrentPlaylist(void)
 
 void PlaylistManager::SetCurrentPlaylist(const Playlist &pl)
 {
+    current_.Pause();
     current_ = Playlist(pl);
     current_.SetCurrentSong(0);//Automatically play for now
 }

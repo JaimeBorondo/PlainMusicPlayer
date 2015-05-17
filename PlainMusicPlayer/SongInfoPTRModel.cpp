@@ -75,3 +75,9 @@ void SongInfoPTRModel::append(const SongInfo *p)
     m_data.append(p);
     endInsertRows();
 }
+
+
+const SongInfo *SongInfoPTRModel::GetSongInfoPTR(unsigned index)
+{
+    return m_data.at(index);
+}
