@@ -6,7 +6,7 @@ my goal is to end up with a music player that can manage playlists initially, an
 if I see that I can expand it easily, maybe add a few features on top of that.
 
 
-##  Libraries used
+##  Libraries / Software used
 Here is a list of the libraries I am currently using or plan to use while 
 developing this application.
 
@@ -16,5 +16,9 @@ developing this application.
 #### TagLib
 For extracting the id3 tags (if any are present) inside audio files.
         
-#### GUI library (TBD)
-I *really* don't want to deal with creating a GUI from scratch in Windows
+#### Microsoft Visual Studio 2013
+Started development in this IDE
+        
+#### Qt Creator
+As soon as I was ready to start integrating the project into a 
+GUI, I ported it to Qt Creator and kept working there.
