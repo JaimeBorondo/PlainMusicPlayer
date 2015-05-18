@@ -112,3 +112,9 @@ const std::vector<const SongInfo *> &Playlist::GetSongs()
 {
     return songs_;
 }
+
+
+Song *Playlist::GetCurrentSong()
+{
+    return current_song_;
+}

@@ -17,12 +17,14 @@ public:
     ~MainWindow();
 public slots:
     void Update();
+    void scrobbletimer();
 
 
 private slots:
     void buttonclicked();
     void SongDoubleClicked(const QModelIndex &i);
-
+    void scrobblereleased();
+    
 private:
     Ui::MainWindow *ui;
     SongInfoPTRModel mmodel;

@@ -13,3 +13,8 @@ void PlaylistManager::SetCurrentPlaylist(const Playlist &pl)
     current_ = Playlist(pl);
     current_.SetCurrentSong(0);//Automatically play for now
 }
+
+Song *PlaylistManager::GetCurrentSong()
+{
+    return current_.GetCurrentSong();
+}

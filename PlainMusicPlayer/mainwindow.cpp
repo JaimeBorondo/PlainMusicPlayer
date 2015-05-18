@@ -21,21 +21,35 @@ void MainWindow::Update()
     SoundSystem::Update();
 }
 
+void MainWindow::scrobbletimer()
+{
+    Song *s = PlaylistManager::GetCurrentSong();
+    if(s != nullptr && !ui->horizontalSlider->isSliderDown())
+    {
+        int value = (1000*s->GetPosition()) / s->GetLength();
+        ui->horizontalSlider->setValue(value);
+    }
+}
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    QTimer *timer = new QTimer();
-
-    connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
-
-    timer->setInterval(16);
-    timer->start();
+    QTimer *mainupdatetimer = new QTimer();
+    connect(mainupdatetimer, SIGNAL(timeout()), this, SLOT(Update()));
+    mainupdatetimer->setInterval(16);
+    mainupdatetimer->start();
+    
+    QTimer *scrobbletimer = new QTimer();
+    connect(scrobbletimer, SIGNAL(timeout()), this, SLOT(scrobbletimer()));
+    scrobbletimer->setInterval(1000);
+    scrobbletimer->start();
+    
     ui->setupUi(this);
 
-    //We will now try to add a button that makes a song play, just for fun
     connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(buttonclicked()));
     connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));
+    connect(ui->horizontalSlider, SIGNAL(sliderReleased()),this, SLOT(scrobblereleased()));
 }
 
 MainWindow::~MainWindow()
@@ -45,12 +59,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::buttonclicked()
 {
-    QStringList l = QFileDialog::getOpenFileNames();
+    QString l = QFileDialog::getOpenFileName();
     std::vector<std::wstring> filenames;
 
-    for(QString &s : l)
-        filenames.push_back(s.toStdWString());
+    //for(QString &s : l)
+      //  filenames.push_back(s.toStdWString());
 
+    filenames.push_back(l.toStdWString());
     std::vector<const SongInfo *> songs = TopLevelLibrary::AddSongs(filenames);
 
     QTableView *view = ui->tableView;
@@ -66,4 +81,18 @@ void MainWindow::SongDoubleClicked(const QModelIndex &i)
     const SongInfo *sptr = mmodel.GetSongInfoPTR(i.row());
     PlaylistInfo pl({sptr});
     PlaylistManager::SetCurrentPlaylist(pl);
+}
+
+void MainWindow::scrobblereleased()
+{
+    //Set the song's position
+    Song *s = PlaylistManager::GetCurrentSong();
+    
+    if(s != nullptr)
+    {
+        int value = ui->horizontalSlider->value();
+        
+        float pct = static_cast<float>(value)/ui->horizontalSlider->maximum();
+        s->SetPosition(pct);
+    }
 }

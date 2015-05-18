@@ -33,6 +33,8 @@ public:
 
 	void Shuffle();
     
+    Song *GetCurrentSong();
+    
     const std::vector<const SongInfo *> &GetSongs();
 
 private:
