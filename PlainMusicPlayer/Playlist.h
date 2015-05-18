@@ -36,8 +36,10 @@ public:
     Song *GetCurrentSong();
     
     const std::vector<const SongInfo *> &GetSongs();
-
+    static void SetVolume(float vol);
 private:
+    
+    static float volume_;
 	void UpdateCurrentSong();
 	unsigned current_song_idx_;
     //might seem redundant, but I like the abstraction

@@ -47,9 +47,10 @@ MainWindow::MainWindow(QWidget *parent) :
     
     ui->setupUi(this);
 
-    connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(buttonclicked()));
+    connect(ui->actionAdd_Songs_To_Libary, SIGNAL(triggered(bool)),this, SLOT(AddSongs(bool)));
     connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));
     connect(ui->horizontalSlider, SIGNAL(sliderReleased()),this, SLOT(scrobblereleased()));
+    connect(ui->volumeslider, SIGNAL(valueChanged(int)),this,SLOT(SetVolume(int)));
 }
 
 MainWindow::~MainWindow()
@@ -57,19 +58,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::buttonclicked()
+void MainWindow::AddSongs(bool)
 {
-    QString l = QFileDialog::getOpenFileName();
+    QStringList l = QFileDialog::getOpenFileNames();
     std::vector<std::wstring> filenames;
 
-    //for(QString &s : l)
-      //  filenames.push_back(s.toStdWString());
+    for(QString &s : l)
+      filenames.push_back(s.toStdWString());
 
-    filenames.push_back(l.toStdWString());
     std::vector<const SongInfo *> songs = TopLevelLibrary::AddSongs(filenames);
-
     QTableView *view = ui->tableView;
-    
     for(const SongInfo *sinfo : songs)
         mmodel.append(sinfo);
     
@@ -95,4 +93,11 @@ void MainWindow::scrobblereleased()
         float pct = static_cast<float>(value)/ui->horizontalSlider->maximum();
         s->SetPosition(pct);
     }
+}
+
+void MainWindow::SetVolume(int value)
+{
+    float volume = static_cast<float>(value) / ui->volumeslider->maximum();
+    Playlist::SetVolume(volume);
+    PlaylistManager::GetCurrentSong()->SetVolume(volume);
 }

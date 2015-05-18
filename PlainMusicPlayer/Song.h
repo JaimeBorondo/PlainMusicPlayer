@@ -47,7 +47,8 @@ public:
 	void Play();
 	void Pause(); //this is a toggle for now
 	void Stop();
-
+    void SetVolume(float vol);
+    
 	bool isPlaying();
 
 	unsigned GetPosition();

@@ -13,15 +13,18 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,13 +32,21 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionAdd_Songs_To_Libary;
     QWidget *centralWidget;
-    QWidget *widget;
-    QGridLayout *gridLayout;
-    QSlider *horizontalSlider;
+    QSlider *volumeslider;
+    QPushButton *playpauseButton;
+    QPushButton *nextButton;
+    QPushButton *previousButton;
     QPushButton *pushButton;
+    QTextBrowser *textBrowser;
+    QTextBrowser *textBrowser_2;
+    QSplitter *splitter;
+    QTreeWidget *treeWidget;
     QTableView *tableView;
+    QSlider *horizontalSlider;
     QMenuBar *menuBar;
+    QMenu *menuFile;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -43,21 +54,83 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(816, 404);
+        MainWindow->resize(823, 404);
+        actionAdd_Songs_To_Libary = new QAction(MainWindow);
+        actionAdd_Songs_To_Libary->setObjectName(QStringLiteral("actionAdd_Songs_To_Libary"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setMaximumSize(QSize(816, 351));
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 801, 341));
-        gridLayout = new QGridLayout(widget);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setSizeConstraint(QLayout::SetMaximumSize);
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalSlider = new QSlider(widget);
+        volumeslider = new QSlider(centralWidget);
+        volumeslider->setObjectName(QStringLiteral("volumeslider"));
+        volumeslider->setGeometry(QRect(650, 320, 151, 21));
+        volumeslider->setOrientation(Qt::Horizontal);
+        playpauseButton = new QPushButton(centralWidget);
+        playpauseButton->setObjectName(QStringLiteral("playpauseButton"));
+        playpauseButton->setGeometry(QRect(45, 320, 28, 24));
+        playpauseButton->setMaximumSize(QSize(30, 16777215));
+        QIcon icon;
+        icon.addFile(QStringLiteral("../../../../Downloads/play.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral("../../../../Downloads/Pause.png"), QSize(), QIcon::Normal, QIcon::On);
+        playpauseButton->setIcon(icon);
+        playpauseButton->setCheckable(true);
+        playpauseButton->setFlat(false);
+        nextButton = new QPushButton(centralWidget);
+        nextButton->setObjectName(QStringLiteral("nextButton"));
+        nextButton->setGeometry(QRect(80, 320, 28, 24));
+        nextButton->setMaximumSize(QSize(30, 16777215));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral("../../../../Downloads/Next.png"), QSize(), QIcon::Normal, QIcon::Off);
+        nextButton->setIcon(icon1);
+        previousButton = new QPushButton(centralWidget);
+        previousButton->setObjectName(QStringLiteral("previousButton"));
+        previousButton->setGeometry(QRect(10, 320, 28, 24));
+        previousButton->setMaximumSize(QSize(30, 16777215));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral("../../../../Downloads/Previous.png"), QSize(), QIcon::Normal, QIcon::Off);
+        previousButton->setIcon(icon2);
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setEnabled(false);
+        pushButton->setGeometry(QRect(620, 320, 31, 23));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral("../../../../Downloads/volume.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon3);
+        pushButton->setAutoDefault(false);
+        pushButton->setFlat(true);
+        textBrowser = new QTextBrowser(centralWidget);
+        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        textBrowser->setGeometry(QRect(10, 296, 601, 20));
+        textBrowser_2 = new QTextBrowser(centralWidget);
+        textBrowser_2->setObjectName(QStringLiteral("textBrowser_2"));
+        textBrowser_2->setGeometry(QRect(500, 321, 111, 20));
+        splitter = new QSplitter(centralWidget);
+        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setGeometry(QRect(10, 10, 771, 281));
+        splitter->setOrientation(Qt::Horizontal);
+        treeWidget = new QTreeWidget(splitter);
+        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+        __qtreewidgetitem->setText(0, QStringLiteral("1"));
+        treeWidget->setHeaderItem(__qtreewidgetitem);
+        treeWidget->setObjectName(QStringLiteral("treeWidget"));
+        treeWidget->setMaximumSize(QSize(200, 16777215));
+        splitter->addWidget(treeWidget);
+        treeWidget->header()->setVisible(false);
+        tableView = new QTableView(splitter);
+        tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        tableView->setAlternatingRowColors(true);
+        tableView->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableView->setTextElideMode(Qt::ElideNone);
+        tableView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+        tableView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+        tableView->setShowGrid(true);
+        tableView->setWordWrap(false);
+        splitter->addWidget(tableView);
+        tableView->horizontalHeader()->setStretchLastSection(true);
+        horizontalSlider = new QSlider(centralWidget);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setGeometry(QRect(115, 320, 381, 22));
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -123,35 +196,13 @@ public:
         horizontalSlider->setSingleStep(1);
         horizontalSlider->setOrientation(Qt::Horizontal);
         horizontalSlider->setTickInterval(0);
-
-        gridLayout->addWidget(horizontalSlider, 1, 1, 1, 1);
-
-        pushButton = new QPushButton(widget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setContextMenuPolicy(Qt::NoContextMenu);
-
-        gridLayout->addWidget(pushButton, 0, 0, 1, 1);
-
-        tableView = new QTableView(widget);
-        tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
-        tableView->setAlternatingRowColors(true);
-        tableView->setSelectionMode(QAbstractItemView::ExtendedSelection);
-        tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-        tableView->setTextElideMode(Qt::ElideNone);
-        tableView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-        tableView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-        tableView->setShowGrid(true);
-        tableView->setWordWrap(false);
-        tableView->horizontalHeader()->setStretchLastSection(true);
-
-        gridLayout->addWidget(tableView, 0, 1, 1, 1);
-
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 816, 21));
+        menuBar->setGeometry(QRect(0, 0, 823, 21));
         menuBar->setNativeMenuBar(true);
+        menuFile = new QMenu(menuBar);
+        menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -159,6 +210,9 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menuFile->menuAction());
+        menuFile->addAction(actionAdd_Songs_To_Libary);
 
         retranslateUi(MainWindow);
 
@@ -168,7 +222,12 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Add Song(s)", 0));
+        actionAdd_Songs_To_Libary->setText(QApplication::translate("MainWindow", "Add Songs To Libary", 0));
+        playpauseButton->setText(QString());
+        nextButton->setText(QString());
+        previousButton->setText(QString());
+        pushButton->setText(QString());
+        menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi
 
 };

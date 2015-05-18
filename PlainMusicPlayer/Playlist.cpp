@@ -2,6 +2,8 @@
 #include "SoundSystem.h"
 #include <algorithm>
 
+float Playlist::volume_ = 1.0f;
+
 PlaylistInfo::PlaylistInfo(const std::vector<const SongInfo *> &songs) : songs_(songs)
 {}
 
@@ -74,6 +76,7 @@ void Playlist::UpdateCurrentSong()
 
 	current_song_ = new Song(*songs_[current_song_idx_]);
 	current_song_->Play();
+    current_song_->SetVolume(volume_);
 }
 
 void Playlist::Update()
@@ -117,4 +120,9 @@ const std::vector<const SongInfo *> &Playlist::GetSongs()
 Song *Playlist::GetCurrentSong()
 {
     return current_song_;
+}
+
+void Playlist::SetVolume(float vol)
+{
+    volume_ = vol;
 }

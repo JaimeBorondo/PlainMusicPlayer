@@ -9,7 +9,7 @@ public:
    static void UpdateCurrentPlaylist(void);
    static void SetCurrentPlaylist(const Playlist &pl);
    static Song *GetCurrentSong();
-
+   
 private:
    static Playlist current_;
 };

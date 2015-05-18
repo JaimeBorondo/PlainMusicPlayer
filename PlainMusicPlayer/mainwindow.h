@@ -21,9 +21,10 @@ public slots:
 
 
 private slots:
-    void buttonclicked();
+    void AddSongs(bool);
     void SongDoubleClicked(const QModelIndex &i);
     void scrobblereleased();
+    void SetVolume(int);
     
 private:
     Ui::MainWindow *ui;

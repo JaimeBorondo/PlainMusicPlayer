@@ -30,6 +30,11 @@ void Song::Stop()
     SoundSystem::Stop(channel_);
 }
 
+void Song::SetVolume(float vol)
+{
+    if(channel_ != nullptr)
+        channel_->setVolume(vol);
+}
 
 bool Song::isPlaying()
 {
