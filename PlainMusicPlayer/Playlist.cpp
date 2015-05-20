@@ -2,7 +2,7 @@
 #include "SoundSystem.h"
 #include <algorithm>
 
-float Playlist::volume_ = 1.0f;
+float Playlist::volume_ = 0.2f;
 
 PlaylistInfo::PlaylistInfo(const std::vector<const SongInfo *> &songs) : songs_(songs)
 {}

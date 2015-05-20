@@ -3,7 +3,6 @@
 #include <fmod.hpp>
 #include <string>
 #include <locale>
-#include <codecvt>
 
 #define TAGLIB_EXPORT
 #define TAGLIB_EXPORT_H
