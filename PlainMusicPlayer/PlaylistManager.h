@@ -9,6 +9,8 @@ public:
    static void UpdateCurrentPlaylist(void);
    static void SetCurrentPlaylist(const Playlist &pl);
    static Song *GetCurrentSong();
+   static void NextSong();
+   static void PreviousSong();
    
 private:
    static Playlist current_;

@@ -127,3 +127,9 @@ bool SongInfo::is_stereo() const
 {
     return stereo_;
 }
+
+
+std::wstring Song::GetDisplayName()
+{
+    return info_.get_artist() + L" - " + info_.get_title() + L" (" + info_.get_album() + L")";
+}

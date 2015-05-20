@@ -9,15 +9,19 @@
 
 #include <QFileDialog>
 #include <QStringListModel>
-#include <QStandardItemModel>
-#include <QGridLayout>
-
-#include <fcntl.h>
-#include <io.h>
 
 void MainWindow::Update()
 {
     PlaylistManager::UpdateCurrentPlaylist();
+
+    Song *s = PlaylistManager::GetCurrentSong();
+    if(s != nullptr)
+    {
+        ui->NowPlaying->setText(QString::fromStdWString(s->GetDisplayName()));
+    }
+    else
+        ui->NowPlaying->clear();
+
     SoundSystem::Update();
 }
 
@@ -52,6 +56,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->horizontalSlider, SIGNAL(sliderReleased()),this, SLOT(scrobblereleased()));
     connect(ui->volumeslider, SIGNAL(valueChanged(int)),this,SLOT(SetVolume(int)));
     connect(ui->LibraryMenu, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),this,SLOT(SelectedLibrary(QTreeWidgetItem*,QTreeWidgetItem*)));
+    connect(ui->playpauseButton, SIGNAL(clicked(bool)),this,SLOT(PauseSong()));
+    connect(ui->nextButton,SIGNAL(clicked(bool)),this,SLOT(NextSong()));
+    connect(ui->previousButton, SIGNAL(clicked(bool)), this, SLOT(PreviousSong()));
 
 
     //Initialize the main library sections in the GUI
@@ -159,6 +166,9 @@ void MainWindow::SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem *)
 
     std::wstring identifier = current->text(0).toStdWString();
 
+    if(identifier == L"All Songs")
+        model = &all_songs_model;
+
     if(current->parent())
     {
         QString parent_id = current->parent()->text(0);
@@ -175,4 +185,21 @@ void MainWindow::SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem *)
 
     current_model_ = model;
     view->setModel(current_model_);
+}
+
+void MainWindow::PauseSong()
+{
+    Song *s = PlaylistManager::GetCurrentSong();
+    if(s != nullptr)
+        s->Pause();
+}
+
+void MainWindow::NextSong()
+{
+    PlaylistManager::NextSong();
+}
+
+void MainWindow::PreviousSong()
+{
+    PlaylistManager::PreviousSong();
 }

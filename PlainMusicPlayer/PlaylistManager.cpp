@@ -18,3 +18,14 @@ Song *PlaylistManager::GetCurrentSong()
 {
     return current_.GetCurrentSong();
 }
+
+
+void PlaylistManager::NextSong()
+{
+    current_.NextSong();
+}
+
+void PlaylistManager::PreviousSong()
+{
+    current_.PreviousSong();
+}

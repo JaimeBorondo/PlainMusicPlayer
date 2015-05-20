@@ -47,7 +47,8 @@ public:
 	void Pause(); //this is a toggle for now
 	void Stop();
     void SetVolume(float vol);
-    
+    std::wstring GetDisplayName();
+
 	bool isPlaying();
 
 	unsigned GetPosition();

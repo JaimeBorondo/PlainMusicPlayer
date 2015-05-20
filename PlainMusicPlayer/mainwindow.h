@@ -29,7 +29,10 @@ private slots:
     void scrobblereleased();
     void SetVolume(int);
     void SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem * previous);
-    
+    void PauseSong();
+    void NextSong();
+    void PreviousSong();
+
 private:
     void UpdateLibrary();
     bool isNewAlbum(const std::wstring &al);
