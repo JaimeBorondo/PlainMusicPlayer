@@ -72,7 +72,10 @@ QVariant SongInfoPTRModel::headerData(int section, Qt::Orientation orientation, 
 void SongInfoPTRModel::append(const SongInfo *p)
 {
     beginInsertRows(QModelIndex(), m_data.count(), m_data.count());
-    m_data.append(p);
+
+    if(!m_data.contains(p))
+        m_data.append(p);
+
     endInsertRows();
 }
 
