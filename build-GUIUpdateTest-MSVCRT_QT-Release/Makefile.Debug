@@ -5,19 +5,19 @@
 # Template: app
 #############################################################################
 
-MAKEFILE      = Makefile.Release
+MAKEFILE      = Makefile.Debug
 
 ####### Compiler, tools and options
 
 CC            = cl
 CXX           = cl
-DEFINES       = -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNDEBUG
-CFLAGS        = -nologo -Zm200 -Zc:wchar_t -FS -O2 -MD -Zc:strictStrings -W3 $(DEFINES)
-CXXFLAGS      = -nologo -Zm200 -Zc:wchar_t -FS -O2 -MD -Zc:strictStrings -GR -W3 -w34100 -w34189 -EHsc $(DEFINES)
-INCPATH       = -I"..\PlainMusicPlayer" -I"." -I"..\PlainMusicPlayer\inc\taglib" -I"..\PlainMusicPlayer\inc\fmod" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtANGLE" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore" -I"release" -I"." -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\win32-msvc2013" 
+DEFINES       = -DUNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+CFLAGS        = -nologo -Zm200 -Zc:wchar_t -FS -Zi -MDd -W3 /Fddebug\GUIUpdateTest.pdb $(DEFINES)
+CXXFLAGS      = -nologo -Zm200 -Zc:wchar_t -FS -Zi -MDd -GR -W3 -w34100 -w34189 -EHsc /Fddebug\GUIUpdateTest.pdb $(DEFINES)
+INCPATH       = -I"..\PlainMusicPlayer" -I"." -I"..\PlainMusicPlayer\inc\taglib" -I"..\PlainMusicPlayer\inc\fmod" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtANGLE" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore" -I"debug" -I"." -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\win32-msvc2013" 
 LINKER        = link
-LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\qtmain.lib shell32.lib /LIBPATH:D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\ D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\tag.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod_vc.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod64_vc.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmodL64_vc.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Widgets.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Gui.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Core.lib 
+LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
+LIBS          = /LIBPATH:D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\qtmaind.lib shell32.lib /LIBPATH:D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\ D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\tag.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod_vc.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod64_vc.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmodL64_vc.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Widgetsd.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Guid.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Cored.lib 
 QMAKE         = D:\Qt\Qt5.4.1\5.4\msvc2013_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -39,7 +39,7 @@ INSTALL_DIR     = $(COPY_DIR)
 
 ####### Output directory
 
-OBJECTS_DIR   = release
+OBJECTS_DIR   = debug
 
 ####### Files
 
@@ -50,16 +50,16 @@ SOURCES       = ..\PlainMusicPlayer\main.cpp \
 		..\PlainMusicPlayer\Song.cpp \
 		..\PlainMusicPlayer\SoundSystem.cpp \
 		..\PlainMusicPlayer\PlaylistManager.cpp \
-		..\PlainMusicPlayer\SongInfoPTRModel.cpp release\moc_mainwindow.cpp
-OBJECTS       = release\main.obj \
-		release\mainwindow.obj \
-		release\Library.obj \
-		release\Playlist.obj \
-		release\Song.obj \
-		release\SoundSystem.obj \
-		release\PlaylistManager.obj \
-		release\SongInfoPTRModel.obj \
-		release\moc_mainwindow.obj
+		..\PlainMusicPlayer\SongInfoPTRModel.cpp debug\moc_mainwindow.cpp
+OBJECTS       = debug\main.obj \
+		debug\mainwindow.obj \
+		debug\Library.obj \
+		debug\Playlist.obj \
+		debug\Song.obj \
+		debug\SoundSystem.obj \
+		debug\PlaylistManager.obj \
+		debug\SongInfoPTRModel.obj \
+		debug\moc_mainwindow.obj
 
 DIST          =  ..\PlainMusicPlayer\mainwindow.h \
 		..\PlainMusicPlayer\Library.h \
@@ -76,78 +76,78 @@ DIST          =  ..\PlainMusicPlayer\mainwindow.h \
 		..\PlainMusicPlayer\PlaylistManager.cpp \
 		..\PlainMusicPlayer\SongInfoPTRModel.cpp
 QMAKE_TARGET  = GUIUpdateTest
-DESTDIR        = release\ #avoid trailing-slash linebreak
+DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = GUIUpdateTest.exe
-DESTDIR_TARGET = release\GUIUpdateTest.exe
+DESTDIR_TARGET = debug\GUIUpdateTest.exe
 
 ####### Implicit rules
 
 .SUFFIXES: .c .cpp .cc .cxx
 
-{..\PlainMusicPlayer}.cpp{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{debug}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{..\PlainMusicPlayer}.cc{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{debug}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{..\PlainMusicPlayer}.cxx{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{debug}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{..\PlainMusicPlayer}.c{release\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
+{debug}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{release}.cpp{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{..\PlainMusicPlayer}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{release}.cc{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{..\PlainMusicPlayer}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{release}.cxx{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{..\PlainMusicPlayer}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{release}.c{release\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
+{..\PlainMusicPlayer}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{.}.cpp{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{.}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{.}.cc{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{.}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{.}.cxx{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+{.}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{.}.c{release\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
+{.}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
 ####### Build rules
 
 first: all
-all: Makefile.Release $(DESTDIR_TARGET)
+all: Makefile.Debug $(DESTDIR_TARGET)
 
 $(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
@@ -155,20 +155,21 @@ $(OBJECTS) $(LIBS)
 <<
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-msvc2013 CONFIG+=debug -o Makefile.Release ..\PlainMusicPlayer\GUIUpdateTest.pro
+	@$(QMAKE) -spec win32-msvc2013 -o Makefile.Debug ..\PlainMusicPlayer\GUIUpdateTest.pro
 
 qmake_all: FORCE
 
 dist:
-	$(ZIP) GUIUpdateTest.zip $(SOURCES) $(DIST) ..\PlainMusicPlayer\GUIUpdateTest.pro ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\spec_pre.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\common\shell-win32.conf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\qconfig.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_core.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_declarative.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_declarative_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_enginio.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_enginio_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_help.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_location.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_network.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_script.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkit.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkit_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkitwidgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkitwidgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\qt_functions.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\qt_config.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\qt_config.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\win32-msvc2013\qmake.conf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\spec_post.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\exclusive_builds.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\default_pre.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\default_pre.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\resolve_config.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\default_post.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\build_pass.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\rtti.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\precompile_header.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\warn_on.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\qt.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\resources.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\moc.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\opengl.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\uic.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\windows.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\testcase_targets.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\exceptions.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\yacc.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\lex.prf ..\PlainMusicPlayer\GUIUpdateTest.pro D:/Qt/Qt5.4.1/5.4/msvc2013_64/lib/qtmain.prl D:/Qt/Qt5.4.1/5.4/msvc2013_64/lib/Qt5Core.prl D:/Qt/Qt5.4.1/5.4/msvc2013_64/lib/Qt5Widgets.prl D:/Qt/Qt5.4.1/5.4/msvc2013_64/lib/Qt5Gui.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) GUIUpdateTest.zip $(SOURCES) $(DIST) ..\PlainMusicPlayer\GUIUpdateTest.pro ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\spec_pre.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\common\shell-win32.conf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\qconfig.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_core.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_declarative.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_declarative_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_enginio.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_enginio_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_help.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_location.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_network.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_script.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkit.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkit_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkitwidgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkitwidgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\qt_functions.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\qt_config.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\qt_config.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\win32-msvc2013\qmake.conf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\spec_post.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\exclusive_builds.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\default_pre.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\default_pre.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\resolve_config.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\default_post.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\build_pass.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\rtti.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\precompile_header.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\warn_on.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\qt.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\resources.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\moc.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\opengl.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\uic.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\win32\windows.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\testcase_targets.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\exceptions.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\yacc.prf ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\features\lex.prf ..\PlainMusicPlayer\GUIUpdateTest.pro D:/Qt/Qt5.4.1/5.4/msvc2013_64/lib/qtmaind.prl D:/Qt/Qt5.4.1/5.4/msvc2013_64/lib/Qt5Cored.prl D:/Qt/Qt5.4.1/5.4/msvc2013_64/lib/Qt5Widgetsd.prl D:/Qt/Qt5.4.1/5.4/msvc2013_64/lib/Qt5Guid.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.obj release\mainwindow.obj release\Library.obj release\Playlist.obj release\Song.obj release\SoundSystem.obj release\PlaylistManager.obj release\SongInfoPTRModel.obj release\moc_mainwindow.obj
-	-$(DEL_FILE) release\GUIUpdateTest.exp
+	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\Library.obj debug\Playlist.obj debug\Song.obj debug\SoundSystem.obj debug\PlaylistManager.obj debug\SongInfoPTRModel.obj debug\moc_mainwindow.obj
+	-$(DEL_FILE) debug\GUIUpdateTest.exp debug\GUIUpdateTest.ilk debug\GUIUpdateTest.idb
 
 distclean: clean 
+	-$(DEL_FILE) debug\GUIUpdateTest.pdb
 	-$(DEL_FILE) $(DESTDIR_TARGET)
-	-$(DEL_FILE) Makefile.Release
+	-$(DEL_FILE) Makefile.Debug
 
 mocclean: compiler_moc_header_clean compiler_moc_source_clean
 
@@ -180,10 +181,10 @@ compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: release\moc_mainwindow.cpp
+compiler_moc_header_make_all: debug\moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_mainwindow.cpp
-release\moc_mainwindow.cpp: ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
+	-$(DEL_FILE) debug\moc_mainwindow.cpp
+debug\moc_mainwindow.cpp: ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qmainwindow.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qwidget.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qwindowdefs.h \
@@ -319,7 +320,7 @@ release\moc_mainwindow.cpp: ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidget
 		..\PlainMusicPlayer\inc\fmod\fmod_output.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.h \
 		..\PlainMusicPlayer\mainwindow.h
-	D:\Qt\Qt5.4.1\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/mkspecs/win32-msvc2013 -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/taglib -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/fmod -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtGui -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtANGLE -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtCore -I. ..\PlainMusicPlayer\mainwindow.h -o release\moc_mainwindow.cpp
+	D:\Qt\Qt5.4.1\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/mkspecs/win32-msvc2013 -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/taglib -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/fmod -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtGui -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtANGLE -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtCore -I. ..\PlainMusicPlayer\mainwindow.h -o debug\moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -341,7 +342,7 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-release\main.obj: ..\PlainMusicPlayer\main.cpp ..\PlainMusicPlayer\mainwindow.h \
+debug\main.obj: ..\PlainMusicPlayer\main.cpp ..\PlainMusicPlayer\mainwindow.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qmainwindow.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qwidget.h \
@@ -490,7 +491,7 @@ release\main.obj: ..\PlainMusicPlayer\main.cpp ..\PlainMusicPlayer\mainwindow.h 
 		..\PlainMusicPlayer\Library.h \
 		..\PlainMusicPlayer\Playlist.h
 
-release\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\mainwindow.h \
+debug\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\mainwindow.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qmainwindow.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qwidget.h \
@@ -627,6 +628,52 @@ release\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\m
 		..\PlainMusicPlayer\inc\fmod\fmod_output.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.h \
 		ui_mainwindow.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QVariant \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QAction \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qaction.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qactiongroup.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QApplication \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qapplication.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcoreapplication.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qeventloop.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qguiapplication.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qinputmethod.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QButtonGroup \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qbuttongroup.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qlayout.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QHeaderView \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qheaderview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMenu \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qmenu.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMenuBar \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qmenubar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QPushButton \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QSlider \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QSplitter \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qsplitter.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QStatusBar \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstatusbar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QTableView \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtableview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QTextBrowser \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtextbrowser.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtextedit.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtextdocument.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtextoption.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtextcursor.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtextformat.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qpen.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QToolBar \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtoolbar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QVBoxLayout \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QWidget \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qtimer.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbasictimer.h \
 		..\PlainMusicPlayer\SoundSystem.h \
@@ -641,7 +688,7 @@ release\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\m
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QStringListModel \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstringlistmodel.h
 
-release\Library.obj: ..\PlainMusicPlayer\Library.cpp ..\PlainMusicPlayer\Library.h \
+debug\Library.obj: ..\PlainMusicPlayer\Library.cpp ..\PlainMusicPlayer\Library.h \
 		..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.hpp \
 		..\PlainMusicPlayer\inc\fmod\fmod_common.h \
@@ -652,7 +699,7 @@ release\Library.obj: ..\PlainMusicPlayer\Library.cpp ..\PlainMusicPlayer\Library
 		..\PlainMusicPlayer\inc\fmod\fmod.h \
 		..\PlainMusicPlayer\Playlist.h
 
-release\Playlist.obj: ..\PlainMusicPlayer\Playlist.cpp ..\PlainMusicPlayer\Playlist.h \
+debug\Playlist.obj: ..\PlainMusicPlayer\Playlist.cpp ..\PlainMusicPlayer\Playlist.h \
 		..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.hpp \
 		..\PlainMusicPlayer\inc\fmod\fmod_common.h \
@@ -663,7 +710,7 @@ release\Playlist.obj: ..\PlainMusicPlayer\Playlist.cpp ..\PlainMusicPlayer\Playl
 		..\PlainMusicPlayer\inc\fmod\fmod.h \
 		..\PlainMusicPlayer\SoundSystem.h
 
-release\Song.obj: ..\PlainMusicPlayer\Song.cpp ..\PlainMusicPlayer\Song.h \
+debug\Song.obj: ..\PlainMusicPlayer\Song.cpp ..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.hpp \
 		..\PlainMusicPlayer\inc\fmod\fmod_common.h \
 		..\PlainMusicPlayer\inc\fmod\fmod_codec.h \
@@ -689,9 +736,9 @@ release\Song.obj: ..\PlainMusicPlayer\Song.cpp ..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\taglib\audioproperties.h \
 		..\PlainMusicPlayer\inc\taglib\tbytevectorstream.h
 
-release\SoundSystem.obj: ..\PlainMusicPlayer\SoundSystem.cpp 
+debug\SoundSystem.obj: ..\PlainMusicPlayer\SoundSystem.cpp 
 
-release\PlaylistManager.obj: ..\PlainMusicPlayer\PlaylistManager.cpp ..\PlainMusicPlayer\PlaylistManager.h \
+debug\PlaylistManager.obj: ..\PlainMusicPlayer\PlaylistManager.cpp ..\PlainMusicPlayer\PlaylistManager.h \
 		..\PlainMusicPlayer\Playlist.h \
 		..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.hpp \
@@ -702,7 +749,7 @@ release\PlaylistManager.obj: ..\PlainMusicPlayer\PlaylistManager.cpp ..\PlainMus
 		..\PlainMusicPlayer\inc\fmod\fmod_output.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.h
 
-release\SongInfoPTRModel.obj: ..\PlainMusicPlayer\SongInfoPTRModel.cpp ..\PlainMusicPlayer\SongInfoPTRModel.h \
+debug\SongInfoPTRModel.obj: ..\PlainMusicPlayer\SongInfoPTRModel.cpp ..\PlainMusicPlayer\SongInfoPTRModel.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QAbstractTableModel \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qabstractitemmodel.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qvariant.h \
@@ -781,7 +828,7 @@ release\SongInfoPTRModel.obj: ..\PlainMusicPlayer\SongInfoPTRModel.cpp ..\PlainM
 		..\PlainMusicPlayer\inc\fmod\fmod_output.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.h
 
-release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
+debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
 
 ####### Install
 

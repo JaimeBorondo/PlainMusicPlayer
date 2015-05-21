@@ -155,7 +155,7 @@ $(OBJECTS) $(LIBS)
 <<
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-msvc2013 CONFIG+=debug -o Makefile.Release ..\PlainMusicPlayer\GUIUpdateTest.pro
+	@$(QMAKE) -spec win32-msvc2013 -o Makefile.Release ..\PlainMusicPlayer\GUIUpdateTest.pro
 
 qmake_all: FORCE
 
@@ -627,6 +627,52 @@ release\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\m
 		..\PlainMusicPlayer\inc\fmod\fmod_output.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.h \
 		ui_mainwindow.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QVariant \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QAction \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qaction.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qactiongroup.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QApplication \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qapplication.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcoreapplication.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qeventloop.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qguiapplication.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qinputmethod.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QButtonGroup \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qbuttongroup.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qlayout.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QHeaderView \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qheaderview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMenu \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qmenu.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMenuBar \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qmenubar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QPushButton \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QSlider \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QSplitter \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qsplitter.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QStatusBar \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstatusbar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QTableView \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtableview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QTextBrowser \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtextbrowser.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtextedit.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtextdocument.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtextoption.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtextcursor.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtextformat.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qpen.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QToolBar \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtoolbar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QVBoxLayout \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QWidget \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qtimer.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbasictimer.h \
 		..\PlainMusicPlayer\SoundSystem.h \

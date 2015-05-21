@@ -289,9 +289,27 @@ debug\moc_mainwindow.cpp: ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtouchdevice.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtabwidget.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qicon.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QTreeWidget \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreewidget.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreeview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qframe.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qvalidator.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qregularexpression.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qslider.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstyle.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtabbar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qrubberband.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreewidgetitemiterator.h \
 		..\PlainMusicPlayer\SongInfoPTRModel.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QAbstractTableModel \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qabstractitemmodel.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QObject \
 		..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.hpp \
@@ -430,9 +448,27 @@ debug\main.obj: ..\PlainMusicPlayer\main.cpp ..\PlainMusicPlayer\mainwindow.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtouchdevice.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtabwidget.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qicon.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QTreeWidget \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreewidget.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreeview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qframe.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qvalidator.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qregularexpression.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qslider.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstyle.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtabbar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qrubberband.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreewidgetitemiterator.h \
 		..\PlainMusicPlayer\SongInfoPTRModel.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QAbstractTableModel \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qabstractitemmodel.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QObject \
 		..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.hpp \
@@ -561,9 +597,27 @@ debug\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\mai
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtouchdevice.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtabwidget.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qicon.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QTreeWidget \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreewidget.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreeview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qframe.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qvalidator.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qregularexpression.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qslider.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstyle.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtabbar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qrubberband.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qtreewidgetitemiterator.h \
 		..\PlainMusicPlayer\SongInfoPTRModel.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QAbstractTableModel \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qabstractitemmodel.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QObject \
 		..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\fmod\fmod.hpp \
@@ -586,14 +640,7 @@ debug\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\mai
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qfileinfo.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qdialog.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QStringListModel \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstringlistmodel.h \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\QStandardItemModel \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qstandarditemmodel.h \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QGridLayout \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qgridlayout.h \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qlayout.h \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qlayoutitem.h \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qboxlayout.h
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstringlistmodel.h
 
 debug\Library.obj: ..\PlainMusicPlayer\Library.cpp ..\PlainMusicPlayer\Library.h \
 		..\PlainMusicPlayer\Song.h \

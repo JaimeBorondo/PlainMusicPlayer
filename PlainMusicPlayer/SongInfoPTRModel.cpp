@@ -15,7 +15,7 @@ SongInfoPTRModel::SongInfoPTRModel(QObject *parent) : QAbstractTableModel(parent
 int SongInfoPTRModel::rowCount(const QModelIndex &) const
 {return m_data.count();}
 
-int SongInfoPTRModel::columnCount(const QModelIndex &parent) const
+int SongInfoPTRModel::columnCount(const QModelIndex &) const
 {return 5;}
 
 QVariant SongInfoPTRModel::data(const QModelIndex &index, int role) const

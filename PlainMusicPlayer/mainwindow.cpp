@@ -10,14 +10,14 @@
 #include <QFileDialog>
 #include <QStringListModel>
 
+#include <iostream>
+
 void MainWindow::Update()
 {
-    PlaylistManager::UpdateCurrentPlaylist();
-
     Song *s = PlaylistManager::GetCurrentSong();
     if(s != nullptr)
     {
-        ui->NowPlaying->setText(QString::fromStdWString(s->GetDisplayName()));
+       ui->NowPlaying->setText(QString::fromStdWString(s->GetDisplayName()));
     }
     else
         ui->NowPlaying->clear();
@@ -30,8 +30,20 @@ void MainWindow::scrobbletimer()
     Song *s = PlaylistManager::GetCurrentSong();
     if(s != nullptr && !ui->horizontalSlider->isSliderDown())
     {
-        int value = (1000*s->GetPosition()) / s->GetLength();
+        unsigned len = s->GetLength();
+        unsigned pos = s->GetPosition();
+
+        int value = (1000*pos) / len;
         ui->horizontalSlider->setValue(value);
+
+        unsigned min_c = pos / 60;
+        unsigned sec_c = pos % 60;
+
+        unsigned min_t = len / 60;
+        unsigned sec_t = len % 60;
+
+
+        ui->textBrowser_2->setText(QString::fromStdWString(std::to_wstring(min_c) + L":" + std::to_wstring(sec_c) + L" / " + std::to_wstring(min_t) + L":" + std::to_wstring(sec_t)));
     }
 }
 
@@ -39,18 +51,23 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    QTimer *mainupdatetimer = new QTimer();
+    setWindowTitle("Plain Music Player");
+
+    mainupdatetimer = new QTimer();
     connect(mainupdatetimer, SIGNAL(timeout()), this, SLOT(Update()));
     mainupdatetimer->setInterval(16);
     mainupdatetimer->start();
     
-    QTimer *scrobbletimer = new QTimer();
-    connect(scrobbletimer, SIGNAL(timeout()), this, SLOT(scrobbletimer()));
-    scrobbletimer->setInterval(1000);
-    scrobbletimer->start();
+    scrobble_timer = new QTimer();
+    connect(scrobble_timer, SIGNAL(timeout()), this, SLOT(scrobbletimer()));
+    scrobble_timer->setInterval(1000);
+    scrobble_timer->start();
     
     ui->setupUi(this);
 
+    ui->LibraryMenu->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    connect(ui->LibraryMenu, SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(onCustomContextMenu(const QPoint &)));
     connect(ui->actionAdd_Songs_To_Libary, SIGNAL(triggered(bool)),this, SLOT(AddSongs(bool)));
     connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));
     connect(ui->horizontalSlider, SIGNAL(sliderReleased()),this, SLOT(scrobblereleased()));
@@ -74,6 +91,11 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete all;
+    delete by_art;
+    delete by_alb;
+    delete mainupdatetimer;
+    delete scrobble_timer;
 }
 
 void MainWindow::AddSongs(bool)
@@ -202,4 +224,33 @@ void MainWindow::NextSong()
 void MainWindow::PreviousSong()
 {
     PlaylistManager::PreviousSong();
+}
+
+void MainWindow::onCustomContextMenu(const QPoint &point)
+{
+    QModelIndex index = ui->LibraryMenu->indexAt(point);
+
+    if (index.isValid()) {
+        QMenu contextMenu;
+        contextMenu.addAction("Set as current playlist",this,SLOT(PlaylistFromLibrary()));
+        contextMenu.exec(ui->LibraryMenu->mapToGlobal(point));
+    }
+}
+
+void MainWindow::PlaylistFromLibrary()
+{
+    bool isalbum;
+    QTreeWidgetItem * current = ui->LibraryMenu->selectedItems()[0];
+    QString text = current->text(0);
+
+    isalbum = current->parent()->text(0) == QString("By Album");
+
+    if(isalbum)
+    {
+        PlaylistManager::SetCurrentPlaylist(TopLevelLibrary::PlaylistFromAlbum(text.toStdWString()));
+    }
+    else
+    {
+        PlaylistManager::SetCurrentPlaylist(TopLevelLibrary::PlaylistFromArtist(text.toStdWString()));
+    }
 }

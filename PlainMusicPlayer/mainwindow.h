@@ -32,6 +32,8 @@ private slots:
     void PauseSong();
     void NextSong();
     void PreviousSong();
+    void onCustomContextMenu(const QPoint &point);
+    void PlaylistFromLibrary();
 
 private:
     void UpdateLibrary();
@@ -47,6 +49,8 @@ private:
     QTreeWidgetItem * all;
     QTreeWidgetItem * by_art;
     QTreeWidgetItem * by_alb;
+    QTimer *mainupdatetimer;
+    QTimer *scrobble_timer;
 
     std::set<std::wstring> albums_so_far_;
     std::set<std::wstring> artists_so_far_;
