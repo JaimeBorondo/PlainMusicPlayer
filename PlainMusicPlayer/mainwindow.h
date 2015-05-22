@@ -36,6 +36,8 @@ private slots:
     void PlaylistFromLibrary();
 
 private:
+    void ConnectSignals();
+
     void UpdateLibrary();
     bool isNewAlbum(const std::wstring &al);
     bool isNewArtist(const std::wstring &al);

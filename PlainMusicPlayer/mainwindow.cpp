@@ -54,12 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle("Plain Music Player");
 
     mainupdatetimer = new QTimer();
-    connect(mainupdatetimer, SIGNAL(timeout()), this, SLOT(Update()));
     mainupdatetimer->setInterval(16);
     mainupdatetimer->start();
     
     scrobble_timer = new QTimer();
-    connect(scrobble_timer, SIGNAL(timeout()), this, SLOT(scrobbletimer()));
     scrobble_timer->setInterval(1000);
     scrobble_timer->start();
     
@@ -67,16 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->LibraryMenu->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    connect(ui->LibraryMenu, SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(onCustomContextMenu(const QPoint &)));
-    connect(ui->actionAdd_Songs_To_Libary, SIGNAL(triggered(bool)),this, SLOT(AddSongs(bool)));
-    connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));
-    connect(ui->horizontalSlider, SIGNAL(sliderReleased()),this, SLOT(scrobblereleased()));
-    connect(ui->volumeslider, SIGNAL(valueChanged(int)),this,SLOT(SetVolume(int)));
-    connect(ui->LibraryMenu, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),this,SLOT(SelectedLibrary(QTreeWidgetItem*,QTreeWidgetItem*)));
-    connect(ui->playpauseButton, SIGNAL(clicked(bool)),this,SLOT(PauseSong()));
-    connect(ui->nextButton,SIGNAL(clicked(bool)),this,SLOT(NextSong()));
-    connect(ui->previousButton, SIGNAL(clicked(bool)), this, SLOT(PreviousSong()));
-
+    ConnectSignals();
 
     //Initialize the main library sections in the GUI
     all = new QTreeWidgetItem(QStringList{"All Songs"});
@@ -253,4 +242,22 @@ void MainWindow::PlaylistFromLibrary()
     {
         PlaylistManager::SetCurrentPlaylist(TopLevelLibrary::PlaylistFromArtist(text.toStdWString()));
     }
+}
+
+
+void MainWindow::ConnectSignals()
+{
+
+    connect(ui->LibraryMenu, SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(onCustomContextMenu(const QPoint &)));
+    connect(ui->actionAdd_Songs_To_Libary, SIGNAL(triggered(bool)),this, SLOT(AddSongs(bool)));
+    connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));
+    connect(ui->horizontalSlider, SIGNAL(sliderReleased()),this, SLOT(scrobblereleased()));
+    connect(ui->volumeslider, SIGNAL(valueChanged(int)),this,SLOT(SetVolume(int)));
+    connect(ui->LibraryMenu, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),this,SLOT(SelectedLibrary(QTreeWidgetItem*,QTreeWidgetItem*)));
+    connect(ui->playpauseButton, SIGNAL(clicked(bool)),this,SLOT(PauseSong()));
+    connect(ui->nextButton,SIGNAL(clicked(bool)),this,SLOT(NextSong()));
+    connect(ui->previousButton, SIGNAL(clicked(bool)), this, SLOT(PreviousSong()));
+
+    connect(mainupdatetimer, SIGNAL(timeout()), this, SLOT(Update()));
+    connect(scrobble_timer, SIGNAL(timeout()), this, SLOT(scrobbletimer()));
 }
