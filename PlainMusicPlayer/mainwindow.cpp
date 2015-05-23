@@ -72,10 +72,12 @@ MainWindow::MainWindow(QWidget *parent) :
     all = new QTreeWidgetItem(QStringList{"All Songs"});
     by_art = new QTreeWidgetItem(QStringList{"By Artist"});
     by_alb = new QTreeWidgetItem(QStringList{"By Album"});
+    playlists = new QTreeWidgetItem(QStringList{"Playlists"});
 
     ui->LibraryMenu->addTopLevelItem(all);
     ui->LibraryMenu->addTopLevelItem(by_art);
     ui->LibraryMenu->addTopLevelItem(by_alb);
+    ui->LibraryMenu->addTopLevelItem(playlists);
  }
 
 MainWindow::~MainWindow()
@@ -97,7 +99,6 @@ void MainWindow::AddSongs(bool)
       filenames.push_back(s.toStdWString());
 
     std::vector<const SongInfo *> songs = TopLevelLibrary::AddSongs(filenames);
-   // QTableView *view = ui->tableView;
 
     for(const SongInfo *sinfo : songs)
     {
@@ -169,7 +170,6 @@ void MainWindow::SetVolume(int value)
     PlaylistManager::GetCurrentSong()->SetVolume(volume);
 }
 
-
 void MainWindow::SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem *)
 {
     //Need to set the current model
@@ -189,7 +189,7 @@ void MainWindow::SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem *)
         {
             model = &by_album_[identifier];
         }
-        else    //We selected an artist
+        else //We selected an artist
         {
             model = &by_artist_[identifier];
         }

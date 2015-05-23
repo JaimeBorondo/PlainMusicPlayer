@@ -51,6 +51,7 @@ private:
     QTreeWidgetItem * all;
     QTreeWidgetItem * by_art;
     QTreeWidgetItem * by_alb;
+    QTreeWidgetItem * playlists;
     QTimer *mainupdatetimer;
     QTimer *scrobble_timer;
 

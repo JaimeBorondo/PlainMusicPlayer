@@ -11,9 +11,11 @@ public:
    static Song *GetCurrentSong();
    static void NextSong();
    static void PreviousSong();
+   static void AddToPlaylist(const std::wstring &plname, const std::vector<const SongInfo *> &songs);
    
 private:
-   static Playlist current_;
+   static Playlist *current_;
+   static std::map<std::wstring, PlaylistInfo> playlists_;
 };
 
 #endif // PLAYLISTMANAGER_H

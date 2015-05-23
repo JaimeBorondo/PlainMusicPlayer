@@ -10,6 +10,11 @@ PlaylistInfo::PlaylistInfo(const std::vector<const SongInfo *> &songs) : songs_(
 const std::vector<const SongInfo *> &PlaylistInfo::GetSongList() const
 {return songs_;}
 
+void PlaylistInfo::AddSongs(const std::vector<const SongInfo *> &songs)
+{
+    std::copy(songs.begin(), songs.end(), std::back_inserter(songs_));
+}
+
 //Playlist definition starts here
 
 Playlist::Playlist()
