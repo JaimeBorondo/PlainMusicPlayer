@@ -14,6 +14,7 @@
 
 void MainWindow::Update()
 {
+    PlaylistManager::UpdateCurrentPlaylist();
     Song *s = PlaylistManager::GetCurrentSong();
     if(s != nullptr)
     {
