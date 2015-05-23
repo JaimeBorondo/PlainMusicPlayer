@@ -7,6 +7,7 @@
 class PlaylistInfo
 {
 public:
+    PlaylistInfo();
 	PlaylistInfo(const std::vector<const SongInfo *> &songs);
     void AddSongs(const std::vector<const SongInfo *> &songs);
 	const std::vector<const SongInfo *> &GetSongList() const;

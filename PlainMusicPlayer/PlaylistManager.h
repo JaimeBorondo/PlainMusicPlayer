@@ -2,6 +2,7 @@
 #define PLAYLISTMANAGER_H
 
 #include "Playlist.h"
+#include <map>
 
 class PlaylistManager
 {
@@ -14,7 +15,7 @@ public:
    static void AddToPlaylist(const std::wstring &plname, const std::vector<const SongInfo *> &songs);
    
 private:
-   static Playlist *current_;
+   static Playlist current_;
    static std::map<std::wstring, PlaylistInfo> playlists_;
 };
 

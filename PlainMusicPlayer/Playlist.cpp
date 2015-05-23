@@ -15,6 +15,9 @@ void PlaylistInfo::AddSongs(const std::vector<const SongInfo *> &songs)
     std::copy(songs.begin(), songs.end(), std::back_inserter(songs_));
 }
 
+PlaylistInfo::PlaylistInfo()
+{}
+
 //Playlist definition starts here
 
 Playlist::Playlist()

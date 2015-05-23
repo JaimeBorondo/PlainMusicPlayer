@@ -31,9 +31,8 @@ void PlaylistManager::PreviousSong()
     current_.PreviousSong();
 }
 
-void AddToPlaylist(const std::wstring &plname, const std::vector<const SongInfo *> &songs)
+void PlaylistManager::AddToPlaylist(const std::wstring &plname, const std::vector<const SongInfo *> &songs)
 {
     //std::map<std::wstring, Playlist>::iterator it = playlists_.find(plname);
 
-    playlists_[plname].
 }
