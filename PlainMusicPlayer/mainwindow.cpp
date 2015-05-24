@@ -254,6 +254,8 @@ void MainWindow::PlaylistFromLibrary()
     {
         PlaylistManager::SetCurrentPlaylist(TopLevelLibrary::PlaylistFromArtist(text.toStdWString()));
     }
+
+    now_playing_model.from_songinfo_vec(PlaylistManager::GetCurrentSongList());
 }
 
 

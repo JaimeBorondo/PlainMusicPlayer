@@ -10,6 +10,7 @@ public:
    static void UpdateCurrentPlaylist(void);
    static void SetCurrentPlaylist(const Playlist &pl);
    static Song *GetCurrentSong();
+   static const std::vector<const SongInfo *> &GetCurrentSongList();
    static void NextSong();
    static void PreviousSong();
    static void AddToPlaylist(const std::wstring &plname, const std::vector<const SongInfo *> &songs);

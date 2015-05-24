@@ -25,6 +25,11 @@ Song *PlaylistManager::GetCurrentSong()
     return current_.GetCurrentSong();
 }
 
+const std::vector<const SongInfo *> &PlaylistManager::GetCurrentSongList()
+{
+    return current_.GetSongs();
+}
+
 void PlaylistManager::NextSong()
 {
     current_.NextSong();
