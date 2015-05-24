@@ -15,11 +15,15 @@ void PlaylistManager::SetCurrentPlaylist(const Playlist &pl)
     current_.SetCurrentSong(0);//Automatically play for now
 }
 
+void PlaylistManager::SetCurrentSong(unsigned int index)
+{
+    current_.SetCurrentSong(index);//Automatically play for now
+}
+
 Song *PlaylistManager::GetCurrentSong()
 {
     return current_.GetCurrentSong();
 }
-
 
 void PlaylistManager::NextSong()
 {

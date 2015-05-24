@@ -15,6 +15,11 @@ SongInfoPTRModel::SongInfoPTRModel(QObject *parent) : QAbstractTableModel(parent
 int SongInfoPTRModel::rowCount(const QModelIndex &) const
 {return m_data.count();}
 
+std::vector<const SongInfo *> SongInfoPTRModel::GetSongs()
+{
+    return m_data.toVector().toStdVector();
+}
+
 int SongInfoPTRModel::columnCount(const QModelIndex &) const
 {return 5;}
 
@@ -83,4 +88,10 @@ void SongInfoPTRModel::append(const SongInfo *p)
 const SongInfo *SongInfoPTRModel::GetSongInfoPTR(unsigned index)
 {
     return m_data.at(index);
+}
+
+
+void SongInfoPTRModel::from_songinfo_vec(const std::vector<const SongInfo *> &songs)
+{
+    m_data = QList<const SongInfo *>::fromVector(QVector<const SongInfo *>::fromStdVector(songs));
 }

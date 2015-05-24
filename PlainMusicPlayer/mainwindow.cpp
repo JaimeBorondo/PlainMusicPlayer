@@ -78,6 +78,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->LibraryMenu->addTopLevelItem(by_art);
     ui->LibraryMenu->addTopLevelItem(by_alb);
     ui->LibraryMenu->addTopLevelItem(playlists);
+
+    nowplaying = new QTreeWidgetItem(QStringList{"Now Playing"});
+    playlists->addChild(nowplaying);
  }
 
 MainWindow::~MainWindow()
@@ -88,6 +91,7 @@ MainWindow::~MainWindow()
     delete by_alb;
     delete mainupdatetimer;
     delete scrobble_timer;
+    delete nowplaying;
 }
 
 void MainWindow::AddSongs(bool)
@@ -108,7 +112,6 @@ void MainWindow::AddSongs(bool)
     }
     ui->LibraryMenu->setCurrentItem(all);
 
-    //Need a function that sets the model contents per artist and album.
     UpdateLibrary();
 }
 
@@ -144,9 +147,10 @@ void MainWindow::UpdateLibrary()
 
 void MainWindow::SongDoubleClicked(const QModelIndex &i)
 {
-    const SongInfo *sptr = current_model_->GetSongInfoPTR(i.row());
-    PlaylistInfo pl({sptr});
+    PlaylistInfo pl(current_model_->GetSongs());
     PlaylistManager::SetCurrentPlaylist(pl);
+    PlaylistManager::SetCurrentSong(i.row());
+    now_playing_model.from_songinfo_vec(current_model_->GetSongs());
 }
 
 void MainWindow::scrobblereleased()
@@ -189,9 +193,16 @@ void MainWindow::SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem *)
         {
             model = &by_album_[identifier];
         }
-        else //We selected an artist
+        else if(parent_id == "By Artist") //We selected an artist
         {
             model = &by_artist_[identifier];
+        }
+        else
+        {
+            if(identifier == L"Now Playing")
+            {
+                model = &now_playing_model;
+            }
         }
     }
 
@@ -248,7 +259,6 @@ void MainWindow::PlaylistFromLibrary()
 
 void MainWindow::ConnectSignals()
 {
-
     connect(ui->LibraryMenu, SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(onCustomContextMenu(const QPoint &)));
     connect(ui->actionAdd_Songs_To_Libary, SIGNAL(triggered(bool)),this, SLOT(AddSongs(bool)));
     connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));

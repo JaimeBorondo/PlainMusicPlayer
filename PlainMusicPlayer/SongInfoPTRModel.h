@@ -18,6 +18,8 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     void append(const SongInfo *p);
     const SongInfo *GetSongInfoPTR(unsigned index);
+    std::vector<const SongInfo *> GetSongs();
+    void from_songinfo_vec(const std::vector<const SongInfo *> &songs);
 };
 
 #endif // SONGINFOPTRMODEL_H

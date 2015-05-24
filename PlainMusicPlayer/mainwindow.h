@@ -46,12 +46,17 @@ private:
 
     Ui::MainWindow *ui;
     SongInfoPTRModel all_songs_model;
+    SongInfoPTRModel now_playing_model;
+
     std::map<std::wstring, SongInfoPTRModel> by_artist_;
     std::map<std::wstring, SongInfoPTRModel> by_album_;
+
     QTreeWidgetItem * all;
     QTreeWidgetItem * by_art;
     QTreeWidgetItem * by_alb;
     QTreeWidgetItem * playlists;
+    QTreeWidgetItem * nowplaying;
+
     QTimer *mainupdatetimer;
     QTimer *scrobble_timer;
 

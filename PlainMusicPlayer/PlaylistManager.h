@@ -13,6 +13,7 @@ public:
    static void NextSong();
    static void PreviousSong();
    static void AddToPlaylist(const std::wstring &plname, const std::vector<const SongInfo *> &songs);
+   static void SetCurrentSong(unsigned int index);
    
 private:
    static Playlist current_;
