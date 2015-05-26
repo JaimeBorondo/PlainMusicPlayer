@@ -65,6 +65,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->LibraryMenu->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
+
 
     ConnectSignals();
 
@@ -238,6 +240,34 @@ void MainWindow::onCustomContextMenu(const QPoint &point)
     }
 }
 
+
+void MainWindow::PlayFromCurrent()
+{
+    QModelIndex i = ui->tableView->selectionModel()->selectedIndexes()[0];
+    SongDoubleClicked(i);
+}
+
+void MainWindow::onCustomContextMenu_table(const QPoint &point)
+{
+    QModelIndex index = ui->tableView->indexAt(point);
+
+    if (index.isValid()) {
+        QMenu contextMenu;
+        contextMenu.addAction("Add to queue",this, SLOT(AddSongToQueue()));
+        contextMenu.addAction("Play from here", this, SLOT(PlayFromCurrent()));
+        contextMenu.exec(ui->tableView->mapToGlobal(point));
+    }
+}
+
+void MainWindow::AddSongToQueue()
+{
+    //Add the selected song to the currently playing playlist
+    QModelIndex index = ui->tableView->selectionModel()->selectedIndexes()[0];
+    
+    const SongInfo *selected = current_model_->GetSongInfoPTR(index.column());
+    now_playing_model.append(selected);
+}
+
 void MainWindow::PlaylistFromLibrary()
 {
     bool isalbum;
@@ -262,6 +292,7 @@ void MainWindow::PlaylistFromLibrary()
 void MainWindow::ConnectSignals()
 {
     connect(ui->LibraryMenu, SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(onCustomContextMenu(const QPoint &)));
+    connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(onCustomContextMenu_table(const QPoint &)));
     connect(ui->actionAdd_Songs_To_Libary, SIGNAL(triggered(bool)),this, SLOT(AddSongs(bool)));
     connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));
     connect(ui->horizontalSlider, SIGNAL(sliderReleased()),this, SLOT(scrobblereleased()));

@@ -25,6 +25,7 @@ public slots:
 
 private slots:
     void AddSongs(bool);
+    void PlayFromCurrent();
     void SongDoubleClicked(const QModelIndex &i);
     void scrobblereleased();
     void SetVolume(int);
@@ -33,7 +34,9 @@ private slots:
     void NextSong();
     void PreviousSong();
     void onCustomContextMenu(const QPoint &point);
+    void onCustomContextMenu_table(const QPoint &point);
     void PlaylistFromLibrary();
+    void AddSongToQueue();
 
 private:
     void ConnectSignals();
