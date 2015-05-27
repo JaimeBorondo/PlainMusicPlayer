@@ -37,7 +37,8 @@ private slots:
     void onCustomContextMenu_table(const QPoint &point);
     void PlaylistFromLibrary();
     void AddSongToQueue();
-
+    void RemoveSongFromQueue();
+    
 private:
     void ConnectSignals();
 

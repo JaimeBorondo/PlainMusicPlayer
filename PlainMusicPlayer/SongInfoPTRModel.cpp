@@ -20,6 +20,11 @@ std::vector<const SongInfo *> SongInfoPTRModel::GetSongs()
     return m_data.toVector().toStdVector();
 }
 
+void SongInfoPTRModel::removeElement(unsigned row)
+{
+    m_data.removeAt(row);
+}
+
 int SongInfoPTRModel::columnCount(const QModelIndex &) const
 {return 5;}
 

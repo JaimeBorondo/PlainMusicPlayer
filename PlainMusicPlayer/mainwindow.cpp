@@ -253,10 +253,21 @@ void MainWindow::onCustomContextMenu_table(const QPoint &point)
 
     if (index.isValid()) {
         QMenu contextMenu;
+        
+        if(current_model_ == &now_playing_model)
+            contextMenu.addAction("Remove from queue", this, SLOT(RemoveSongFromQueue()));
+        
         contextMenu.addAction("Add to queue",this, SLOT(AddSongToQueue()));
         contextMenu.addAction("Play from here", this, SLOT(PlayFromCurrent()));
         contextMenu.exec(ui->tableView->mapToGlobal(point));
     }
+}
+
+
+void MainWindow::RemoveSongFromQueue()
+{
+    QModelIndex index = ui->tableView->selectionModel()->selectedIndexes()[0];
+    now_playing_model.removeElement(index.row());
 }
 
 void MainWindow::AddSongToQueue()

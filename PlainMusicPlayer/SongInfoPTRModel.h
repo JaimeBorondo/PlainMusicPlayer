@@ -16,6 +16,7 @@ public:
     int columnCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    void removeElement(unsigned row);
     void append(const SongInfo *p);
     const SongInfo *GetSongInfoPTR(unsigned index);
     std::vector<const SongInfo *> GetSongs();
