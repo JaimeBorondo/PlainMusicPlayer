@@ -1,11 +1,19 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <string>
 #include <set>
 
 #include <QMainWindow>
 #include <QTreeWidget>
 #include "SongInfoPTRModel.h"
+#include "Playlist.h"
+
+struct playlist_model
+{
+    PlaylistInfo pl;
+    SongInfoPTRModel model;
+};
 
 namespace Ui {
 class MainWindow;
@@ -66,6 +74,9 @@ private:
 
     std::set<std::wstring> albums_so_far_;
     std::set<std::wstring> artists_so_far_;
+    
+    std::map<std::wstring, playlist_model> playlists_map_;
+    std::wstring currently_displayed_playlist_;
 };
 
 #endif // MAINWINDOW_H

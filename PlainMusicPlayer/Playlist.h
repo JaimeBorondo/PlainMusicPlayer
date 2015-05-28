@@ -10,8 +10,13 @@ public:
     PlaylistInfo();
 	PlaylistInfo(const std::vector<const SongInfo *> &songs);
     void AddSongs(const std::vector<const SongInfo *> &songs);
+    void RemoveAt(unsigned idx);
 	const std::vector<const SongInfo *> &GetSongList() const;
+    const std::wstring &GetName() const;
+    void SetName(const std::wstring &name);
+    
 private:
+    std::wstring name_;
 	std::vector<const SongInfo *> songs_;
 };
 
@@ -39,6 +44,9 @@ public:
     
     const std::vector<const SongInfo *> &GetSongs();
     static void SetVolume(float vol);
+    const std::wstring &GetName() const;
+    void SetName(const std::wstring &name);
+    
 private:
     
     static float volume_;
@@ -47,4 +55,5 @@ private:
     //might seem redundant, but I like the abstraction
     std::vector<const SongInfo *> songs_;
 	Song *current_song_;
+    std::wstring name_;
 };

@@ -4,7 +4,10 @@
 
 float Playlist::volume_ = 0.2f;
 
-PlaylistInfo::PlaylistInfo(const std::vector<const SongInfo *> &songs) : songs_(songs)
+PlaylistInfo::PlaylistInfo() : name_(L"")
+{}
+
+PlaylistInfo::PlaylistInfo(const std::vector<const SongInfo *> &songs) : name_(L""), songs_(songs)
 {}
 
 const std::vector<const SongInfo *> &PlaylistInfo::GetSongList() const
@@ -15,29 +18,50 @@ void PlaylistInfo::AddSongs(const std::vector<const SongInfo *> &songs)
     std::copy(songs.begin(), songs.end(), std::back_inserter(songs_));
 }
 
-PlaylistInfo::PlaylistInfo()
-{}
+void PlaylistInfo::RemoveAt(unsigned idx)
+{
+    songs_.erase(songs_.begin() + idx);
+}
+
+const std::wstring &PlaylistInfo::GetName() const
+{
+    return name_;
+}
+
+void PlaylistInfo::SetName(const std::wstring &name)
+{
+    name_ = name;
+}
 
 //Playlist definition starts here
+const std::wstring &Playlist::GetName() const
+{
+    return name_;
+}
 
-Playlist::Playlist()
+Playlist::Playlist() : name_(L"")
 {
     current_song_ = nullptr;
     current_song_idx_ = 0;
 }
 
-Playlist::Playlist(const Playlist &pl)
+Playlist::Playlist(const Playlist &pl) : name_(pl.name_)
 {
     current_song_ = nullptr;
     current_song_idx_ = 0;
     songs_ = pl.songs_;
 }
 
-Playlist::Playlist(const PlaylistInfo &pi)
+Playlist::Playlist(const PlaylistInfo &pi) : name_(pi.GetName())
 {
 	current_song_ = nullptr;
 	songs_ = pi.GetSongList();
 	current_song_idx_ = 0;
+}
+
+void Playlist::SetName(const std::wstring &name)
+{
+    name_ = name;
 }
 
 Playlist::~Playlist()

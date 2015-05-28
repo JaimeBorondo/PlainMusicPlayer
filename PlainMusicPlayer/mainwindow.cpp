@@ -150,9 +150,12 @@ void MainWindow::UpdateLibrary()
 void MainWindow::SongDoubleClicked(const QModelIndex &i)
 {
     PlaylistInfo pl(current_model_->GetSongs());
-    PlaylistManager::SetCurrentPlaylist(pl);
+    
+    playlists_map_[L"Now Playing"].pl = pl;
+    playlists_map_[L"Now Playing"].model.from_songinfo_vec(current_model_->GetSongs());
+    
+    PlaylistManager::SetCurrentPlaylist(playlists_map_[L"Now Playing"].pl);
     PlaylistManager::SetCurrentSong(i.row());
-    now_playing_model.from_songinfo_vec(current_model_->GetSongs());
 }
 
 void MainWindow::scrobblereleased()
@@ -186,6 +189,9 @@ void MainWindow::SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem *)
 
     if(identifier == L"All Songs")
         model = &all_songs_model;
+    
+    if(identifier == L"By Album" || identifier == L"By Artist" || identifier == L"Playlists" )
+        return;
 
     if(current->parent())
     {
@@ -194,17 +200,17 @@ void MainWindow::SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem *)
         if(parent_id == "By Album")//This is an album
         {
             model = &by_album_[identifier];
+            currently_displayed_playlist_ = L"";
         }
         else if(parent_id == "By Artist") //We selected an artist
         {
             model = &by_artist_[identifier];
+            currently_displayed_playlist_ = L"";
         }
         else
-        {
-            if(identifier == L"Now Playing")
-            {
-                model = &now_playing_model;
-            }
+        {            
+            model = &playlists_map_[identifier].model;
+            currently_displayed_playlist_ = identifier;
         }
     }
 
@@ -254,8 +260,8 @@ void MainWindow::onCustomContextMenu_table(const QPoint &point)
     if (index.isValid()) {
         QMenu contextMenu;
         
-        if(current_model_ == &now_playing_model)
-            contextMenu.addAction("Remove from queue", this, SLOT(RemoveSongFromQueue()));
+        if(currently_displayed_playlist_ != L"")
+            contextMenu.addAction("Remove from playlist", this, SLOT(RemoveSongFromQueue()));
         
         contextMenu.addAction("Add to queue",this, SLOT(AddSongToQueue()));
         contextMenu.addAction("Play from here", this, SLOT(PlayFromCurrent()));
@@ -266,8 +272,16 @@ void MainWindow::onCustomContextMenu_table(const QPoint &point)
 
 void MainWindow::RemoveSongFromQueue()
 {
-    QModelIndex index = ui->tableView->selectionModel()->selectedIndexes()[0];
-    now_playing_model.removeElement(index.row());
+    QModelIndexList list = ui->tableView->selectionModel()->selectedIndexes();
+    std::sort(list.begin(), list.end());
+    std::reverse(list.begin(), list.end());
+    
+    for(const QModelIndex &i : list)
+    {
+        playlists_map_[currently_displayed_playlist_].model.removeElement(i.row());
+        playlists_map_[currently_displayed_playlist_].pl.RemoveAt(i.row());
+        //Need to update the current playing playlist from here
+    }
 }
 
 void MainWindow::AddSongToQueue()
@@ -296,7 +310,8 @@ void MainWindow::PlaylistFromLibrary()
         PlaylistManager::SetCurrentPlaylist(TopLevelLibrary::PlaylistFromArtist(text.toStdWString()));
     }
 
-    now_playing_model.from_songinfo_vec(PlaylistManager::GetCurrentSongList());
+    playlists_map_[L"Now Playing"].model.from_songinfo_vec(PlaylistManager::GetCurrentSongList());
+    playlists_map_[L"Now Playing"].pl = PlaylistInfo(PlaylistManager::GetCurrentSongList());    
 }
 
 
