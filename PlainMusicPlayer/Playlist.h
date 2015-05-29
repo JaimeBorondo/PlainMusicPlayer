@@ -8,10 +8,10 @@ class PlaylistInfo
 {
 public:
     PlaylistInfo();
-	PlaylistInfo(const std::vector<const SongInfo *> &songs);
+    PlaylistInfo(const std::vector<const SongInfo *> &songs);
     void AddSongs(const std::vector<const SongInfo *> &songs);
     void RemoveAt(unsigned idx);
-	const std::vector<const SongInfo *> &GetSongList() const;
+    const std::vector<const SongInfo *> &GetSongList() const;
     const std::wstring &GetName() const;
     void SetName(const std::wstring &name);
     

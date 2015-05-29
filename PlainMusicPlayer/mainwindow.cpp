@@ -272,25 +272,36 @@ void MainWindow::onCustomContextMenu_table(const QPoint &point)
 
 void MainWindow::RemoveSongFromQueue()
 {
-    QModelIndexList list = ui->tableView->selectionModel()->selectedIndexes();
-    std::sort(list.begin(), list.end());
-    std::reverse(list.begin(), list.end());
+    QModelIndexList list = ui->tableView->selectionModel()->selectedRows();
+    
+    std::sort(list.begin(), list.end(),
+    [](const QModelIndex &l, const QModelIndex &r)
+    {
+        return l.row() > r.row();        
+    });
     
     for(const QModelIndex &i : list)
     {
         playlists_map_[currently_displayed_playlist_].model.removeElement(i.row());
         playlists_map_[currently_displayed_playlist_].pl.RemoveAt(i.row());
-        //Need to update the current playing playlist from here
+    }
+    //Need to update the current playing playlist from here
+    if(currently_displayed_playlist_ == L"Now Playing")
+    {
+        PlaylistManager::SetCurrentPlaylist(playlists_map_[currently_displayed_playlist_].pl);
     }
 }
 
 void MainWindow::AddSongToQueue()
 {
     //Add the selected song to the currently playing playlist
-    QModelIndex index = ui->tableView->selectionModel()->selectedIndexes()[0];
+    QModelIndex index = ui->tableView->selectionModel()->selectedRows()[0];
     
-    const SongInfo *selected = current_model_->GetSongInfoPTR(index.column());
-    now_playing_model.append(selected);
+    const SongInfo *selected = current_model_->GetSongInfoPTR(index.row());
+    playlists_map_[L"Now Playing"].model.append(selected);
+    playlists_map_[L"Now Playing"].pl = PlaylistInfo(playlists_map_[L"Now Playing"].model.GetSongs());
+
+    PlaylistManager::SetCurrentPlaylist(playlists_map_[L"Now Playing"].pl);
 }
 
 void MainWindow::PlaylistFromLibrary()
