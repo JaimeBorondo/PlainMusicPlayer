@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     SoundSystem.cpp \
     PlaylistManager.cpp \
     SongInfoPTRModel.cpp \
-    SongInfo.cpp
+    SongInfo.cpp \
+    PlaylistInfo.cpp
 
 HEADERS  += mainwindow.h \
     Library.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     SoundSystem.h \
     PlaylistManager.h \
     SongInfoPTRModel.h \
-    SongInfo.h
+    SongInfo.h \
+    PlaylistInfo.h
 
 FORMS    += mainwindow.ui
 

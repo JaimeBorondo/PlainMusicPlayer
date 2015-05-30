@@ -1,24 +1,5 @@
 #pragma once
-
-#include "Song.h"
-
-#include <vector>
-
-class PlaylistInfo
-{
-public:
-    PlaylistInfo();
-    PlaylistInfo(const std::vector<const SongInfo *> &songs);
-    void AddSongs(const std::vector<const SongInfo *> &songs);
-    void RemoveAt(unsigned idx);
-    const std::vector<const SongInfo *> &GetSongList() const;
-    const std::wstring &GetName() const;
-    void SetName(const std::wstring &name);
-    
-private:
-    std::wstring name_;
-	std::vector<const SongInfo *> songs_;
-};
+#include "PlaylistInfo.h"
 
 //A playlist will be initialized from a playlist info, 
 //and will be managed by an external entity (Playlist controller maybe??)
