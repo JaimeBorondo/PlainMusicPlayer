@@ -701,7 +701,12 @@ debug\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\mai
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qfileinfo.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qdialog.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\QStringListModel \
-		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstringlistmodel.h
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstringlistmodel.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QInputDialog \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qinputdialog.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qlineedit.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QErrorMessage \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qerrormessage.h
 
 debug\Library.obj: ..\PlainMusicPlayer\Library.cpp ..\PlainMusicPlayer\Library.h \
 		..\PlainMusicPlayer\Song.h \

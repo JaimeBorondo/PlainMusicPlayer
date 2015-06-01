@@ -21,6 +21,8 @@ public:
     const SongInfo *GetSongInfoPTR(unsigned index);
     std::vector<const SongInfo *> GetSongs();
     void from_songinfo_vec(const std::vector<const SongInfo *> &songs);
+    
+    SongInfoPTRModel &operator =(const SongInfoPTRModel &other);
 };
 
 #endif // SONGINFOPTRMODEL_H

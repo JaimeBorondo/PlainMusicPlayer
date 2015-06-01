@@ -100,3 +100,11 @@ void SongInfoPTRModel::from_songinfo_vec(const std::vector<const SongInfo *> &so
 {
     m_data = QList<const SongInfo *>::fromVector(QVector<const SongInfo *>::fromStdVector(songs));
 }
+
+
+SongInfoPTRModel &SongInfoPTRModel::operator =(const SongInfoPTRModel &other)
+{
+    //Just copy the data over
+    m_data = other.m_data;
+    return *this;
+}

@@ -9,6 +9,8 @@
 
 #include <QFileDialog>
 #include <QStringListModel>
+#include <QInputDialog>
+#include <QErrorMessage>
 
 #include <iostream>
 
@@ -241,11 +243,36 @@ void MainWindow::onCustomContextMenu(const QPoint &point)
 
     if (index.isValid()) {
         QMenu contextMenu;
+        
+        if(ui->LibraryMenu->selectedItems()[0]->text(0) == QString("Playlists"))
+        contextMenu.addAction("Add new Playlist", this, SLOT(AddNewPlaylist()));
+        
         contextMenu.addAction("Set as current playlist",this,SLOT(PlaylistFromLibrary()));
         contextMenu.exec(ui->LibraryMenu->mapToGlobal(point));
     }
 }
 
+void MainWindow::AddNewPlaylist()
+{
+    bool ok;
+    QString text = QInputDialog::getText(this, tr("Enter New Playlist Name"),
+                                             tr("Name:"), QLineEdit::Normal,
+                                             QDir::home().dirName(), &ok);
+    if (ok && !text.isEmpty())
+    {
+        if(playlists_map_.find(text.toStdWString()) != playlists_map_.end())
+        {
+            QErrorMessage ermsg;
+            ermsg.showMessage("Playlist by that name already exists.");
+        }
+        else
+        {
+            playlist_model pl;
+            playlists_map_[text.toStdWString()] = pl;   
+            playlists->addChild(new QTreeWidgetItem(QStringList{text}));
+        }        
+    }
+}
 
 void MainWindow::PlayFromCurrent()
 {

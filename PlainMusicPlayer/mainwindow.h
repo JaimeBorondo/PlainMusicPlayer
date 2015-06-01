@@ -46,6 +46,7 @@ private slots:
     void PlaylistFromLibrary();
     void AddSongToQueue();
     void RemoveSongFromQueue();
+    void AddNewPlaylist();
     
 private:
     void ConnectSignals();
