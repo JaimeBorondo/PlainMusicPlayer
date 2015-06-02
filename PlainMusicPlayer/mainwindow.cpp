@@ -291,11 +291,38 @@ void MainWindow::onCustomContextMenu_table(const QPoint &point)
             contextMenu.addAction("Remove from playlist", this, SLOT(RemoveSongFromQueue()));
         
         contextMenu.addAction("Add to queue",this, SLOT(AddSongToQueue()));
+        
+        QMenu * playlist_menu = contextMenu.addMenu("Add to Playlist");
+        FillPlaylistMenu(playlist_menu);
+        
         contextMenu.addAction("Play from here", this, SLOT(PlayFromCurrent()));
         contextMenu.exec(ui->tableView->mapToGlobal(point));
     }
 }
 
+void MainWindow::FillPlaylistMenu(QMenu * playlist_menu)
+{
+    for(const std::pair<const std::wstring &, const playlist_model &> &cur : playlists_map_)
+    {
+        std::wstring id = cur.first;
+        
+        QAction *temp = new QAction(QString::fromStdWString(cur.first),nullptr);
+        connect(temp,&QAction::triggered,[temp, this, id]()
+        {
+            //Add the selected song(/s) to the playlist
+            QModelIndexList idcs = ui->tableView->selectionModel()->selectedRows();
+            for(const QModelIndex &i : idcs)
+            {
+                const SongInfo *ptr = playlists_map_[currently_displayed_playlist_].model.GetSongInfoPTR(i.row());
+                playlist_model & m = playlists_map_[id];
+                m.model.append(ptr);
+                m.pl = PlaylistInfo(m.model.GetSongs());
+            }            
+        });
+        
+        playlist_menu->addAction(temp);
+    }
+}
 
 void MainWindow::RemoveSongFromQueue()
 {

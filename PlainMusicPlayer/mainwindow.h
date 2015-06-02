@@ -51,6 +51,8 @@ private slots:
 private:
     void ConnectSignals();
 
+    void FillPlaylistMenu(QMenu * playlist_menu);
+    
     void UpdateLibrary();
     bool isNewAlbum(const std::wstring &al);
     bool isNewArtist(const std::wstring &al);

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[23];
-    char stringdata[294];
+    QByteArrayData data[24];
+    char stringdata[309];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,7 +51,8 @@ QT_MOC_LITERAL(18, 207, 5), // "point"
 QT_MOC_LITERAL(19, 213, 25), // "onCustomContextMenu_table"
 QT_MOC_LITERAL(20, 239, 19), // "PlaylistFromLibrary"
 QT_MOC_LITERAL(21, 259, 14), // "AddSongToQueue"
-QT_MOC_LITERAL(22, 274, 19) // "RemoveSongFromQueue"
+QT_MOC_LITERAL(22, 274, 19), // "RemoveSongFromQueue"
+QT_MOC_LITERAL(23, 294, 14) // "AddNewPlaylist"
 
     },
     "MainWindow\0Update\0\0scrobbletimer\0"
@@ -61,7 +62,8 @@ QT_MOC_LITERAL(22, 274, 19) // "RemoveSongFromQueue"
     "current\0previous\0PauseSong\0NextSong\0"
     "PreviousSong\0onCustomContextMenu\0point\0"
     "onCustomContextMenu_table\0PlaylistFromLibrary\0"
-    "AddSongToQueue\0RemoveSongFromQueue"
+    "AddSongToQueue\0RemoveSongFromQueue\0"
+    "AddNewPlaylist"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,7 +73,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,22 +81,23 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x0a /* Public */,
-       3,    0,   95,    2, 0x0a /* Public */,
-       4,    1,   96,    2, 0x08 /* Private */,
-       5,    0,   99,    2, 0x08 /* Private */,
-       6,    1,  100,    2, 0x08 /* Private */,
-       8,    0,  103,    2, 0x08 /* Private */,
-       9,    1,  104,    2, 0x08 /* Private */,
-      10,    2,  107,    2, 0x08 /* Private */,
-      14,    0,  112,    2, 0x08 /* Private */,
-      15,    0,  113,    2, 0x08 /* Private */,
-      16,    0,  114,    2, 0x08 /* Private */,
-      17,    1,  115,    2, 0x08 /* Private */,
-      19,    1,  118,    2, 0x08 /* Private */,
-      20,    0,  121,    2, 0x08 /* Private */,
-      21,    0,  122,    2, 0x08 /* Private */,
-      22,    0,  123,    2, 0x08 /* Private */,
+       1,    0,   99,    2, 0x0a /* Public */,
+       3,    0,  100,    2, 0x0a /* Public */,
+       4,    1,  101,    2, 0x08 /* Private */,
+       5,    0,  104,    2, 0x08 /* Private */,
+       6,    1,  105,    2, 0x08 /* Private */,
+       8,    0,  108,    2, 0x08 /* Private */,
+       9,    1,  109,    2, 0x08 /* Private */,
+      10,    2,  112,    2, 0x08 /* Private */,
+      14,    0,  117,    2, 0x08 /* Private */,
+      15,    0,  118,    2, 0x08 /* Private */,
+      16,    0,  119,    2, 0x08 /* Private */,
+      17,    1,  120,    2, 0x08 /* Private */,
+      19,    1,  123,    2, 0x08 /* Private */,
+      20,    0,  126,    2, 0x08 /* Private */,
+      21,    0,  127,    2, 0x08 /* Private */,
+      22,    0,  128,    2, 0x08 /* Private */,
+      23,    0,  129,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -110,6 +113,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QPoint,   18,
     QMetaType::Void, QMetaType::QPoint,   18,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -138,6 +142,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->PlaylistFromLibrary(); break;
         case 14: _t->AddSongToQueue(); break;
         case 15: _t->RemoveSongFromQueue(); break;
+        case 16: _t->AddNewPlaylist(); break;
         default: ;
         }
     }
@@ -168,13 +173,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 17)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }
