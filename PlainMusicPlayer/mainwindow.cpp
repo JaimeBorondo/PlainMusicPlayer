@@ -313,7 +313,7 @@ void MainWindow::FillPlaylistMenu(QMenu * playlist_menu)
             QModelIndexList idcs = ui->tableView->selectionModel()->selectedRows();
             for(const QModelIndex &i : idcs)
             {
-                const SongInfo *ptr = playlists_map_[currently_displayed_playlist_].model.GetSongInfoPTR(i.row());
+                const SongInfo *ptr = current_model_->GetSongInfoPTR(i.row());
                 playlist_model & m = playlists_map_[id];
                 m.model.append(ptr);
                 m.pl = PlaylistInfo(m.model.GetSongs());
