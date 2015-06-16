@@ -69,5 +69,5 @@ unsigned Song::GetLength()
 
 std::wstring Song::GetDisplayName()
 {
-    return info_.get_artist() + L" - " + info_.get_title() + L" (" + info_.get_album() + L")";
+    return info_.get_display_name();
 }

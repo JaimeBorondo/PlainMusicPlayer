@@ -15,6 +15,8 @@ public:
    static void PreviousSong();
    static void AddToPlaylist(const std::wstring &plname, const std::vector<const SongInfo *> &songs);
    static void SetCurrentSong(unsigned int index);
+   static void AppendToCurrentPlaylist(const SongInfo *song);
+   static void RemoveSong(const SongInfo *song);
    
 private:
    static Playlist current_;

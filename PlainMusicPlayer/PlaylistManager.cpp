@@ -44,3 +44,20 @@ void PlaylistManager::AddToPlaylist(const std::wstring &plname, const std::vecto
 {
     playlists_[plname].AddSongs(songs);
 }
+
+
+void PlaylistManager::AppendToCurrentPlaylist(const SongInfo *song)
+{
+    current_.Append(song);
+}
+
+void PlaylistManager::RemoveSong(const SongInfo *song)
+{
+    //If the song currently playing is this one, advance to the next one
+    if(current_.GetCurrentSong()->GetDisplayName() ==  song->get_display_name())
+    {
+        current_.Stop();
+    }
+    
+    current_.Remove(song);
+}

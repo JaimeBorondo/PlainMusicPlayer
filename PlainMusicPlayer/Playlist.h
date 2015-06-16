@@ -18,11 +18,13 @@ public:
 	void NextSong();
 	void PreviousSong();
 	void Pause();
-
+    void Stop();
+    void Remove(const SongInfo *s);
 	void Shuffle();
     
     Song *GetCurrentSong();
     
+    void Append(const SongInfo *song);
     const std::vector<const SongInfo *> &GetSongs();
     static void SetVolume(float vol);
     const std::wstring &GetName() const;

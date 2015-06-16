@@ -34,6 +34,11 @@ void Playlist::SetName(const std::wstring &name)
     name_ = name;
 }
 
+void Playlist::Append(const SongInfo *song)
+{
+    songs_.push_back(song);
+}
+
 Playlist::~Playlist()
 {
 	if (current_song_ != nullptr)
@@ -65,6 +70,28 @@ void Playlist::Pause()
 {
 	if(current_song_ != nullptr)
         current_song_->Pause();
+}
+
+
+void Playlist::Stop()
+{
+    if (current_song_ != nullptr)
+    {
+        current_song_->Stop();
+        delete current_song_;
+        current_song_ = nullptr;
+    }
+}
+
+void Playlist::Remove(const SongInfo *s)
+{
+    std::vector<const SongInfo *>::iterator it = songs_.begin();
+    
+    while(it != songs_.end())
+        if((*it)->get_display_name() == s->get_display_name())
+            it = songs_.erase(it);
+        else
+            it++;
 }
 
 void Playlist::UpdateCurrentSong()

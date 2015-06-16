@@ -20,6 +20,9 @@ public:
     const std::wstring &get_title() const;
     const std::wstring &get_artist() const;
     const std::wstring &get_album() const;
+    
+    std::wstring get_display_name() const;
+    
     const unsigned &get_length() const;
     const unsigned &get_bitrate() const;
     const unsigned &get_frequency() const;

@@ -336,13 +336,15 @@ void MainWindow::RemoveSongFromQueue()
     
     for(const QModelIndex &i : list)
     {
+        const SongInfo *sel = playlists_map_[currently_displayed_playlist_].model.GetSongInfoPTR(i.row());
+        
+        if(currently_displayed_playlist_ == L"Now Playing")
+        {
+            PlaylistManager::RemoveSong(sel);
+        }
+        
         playlists_map_[currently_displayed_playlist_].model.removeElement(i.row());
         playlists_map_[currently_displayed_playlist_].pl.RemoveAt(i.row());
-    }
-    //Need to update the current playing playlist from here
-    if(currently_displayed_playlist_ == L"Now Playing")
-    {
-        PlaylistManager::SetCurrentPlaylist(playlists_map_[currently_displayed_playlist_].pl);
     }
 }
 
@@ -355,7 +357,7 @@ void MainWindow::AddSongToQueue()
     playlists_map_[L"Now Playing"].model.append(selected);
     playlists_map_[L"Now Playing"].pl = PlaylistInfo(playlists_map_[L"Now Playing"].model.GetSongs());
 
-    PlaylistManager::SetCurrentPlaylist(playlists_map_[L"Now Playing"].pl);
+    PlaylistManager::AppendToCurrentPlaylist(selected);
 }
 
 void MainWindow::PlaylistFromLibrary()
