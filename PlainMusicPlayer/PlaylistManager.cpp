@@ -53,11 +53,17 @@ void PlaylistManager::AppendToCurrentPlaylist(const SongInfo *song)
 
 void PlaylistManager::RemoveSong(const SongInfo *song)
 {
+    bool needs_restart = false;
+    
     //If the song currently playing is this one, advance to the next one
     if(current_.GetCurrentSong()->GetDisplayName() ==  song->get_display_name())
     {
+        needs_restart = true;
         current_.Stop();
     }
     
     current_.Remove(song);
+    
+    if(needs_restart)
+        current_.UpdateCurrentSong();
 }

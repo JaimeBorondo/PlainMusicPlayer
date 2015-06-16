@@ -178,7 +178,10 @@ void MainWindow::SetVolume(int value)
 {
     float volume = static_cast<float>(value) / ui->volumeslider->maximum();
     Playlist::SetVolume(volume);
-    PlaylistManager::GetCurrentSong()->SetVolume(volume);
+    Song *s = PlaylistManager::GetCurrentSong();
+    
+    if(s != nullptr)
+        s->SetVolume(volume);
 }
 
 void MainWindow::SelectedLibrary(QTreeWidgetItem * current, QTreeWidgetItem *)

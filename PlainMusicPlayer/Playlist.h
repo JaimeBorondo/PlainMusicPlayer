@@ -30,10 +30,11 @@ public:
     const std::wstring &GetName() const;
     void SetName(const std::wstring &name);
     
+    void UpdateCurrentSong();
+    
 private:
     
     static float volume_;
-	void UpdateCurrentSong();
 	unsigned current_song_idx_;
     //might seem redundant, but I like the abstraction
     std::vector<const SongInfo *> songs_;
