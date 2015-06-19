@@ -3,6 +3,8 @@
 #include <string>
 #include <codecvt>
 
+#include <QMessageBox>
+
 FMOD::System *SoundSystem::system_;
 
 void SoundSystem::Initialize()
@@ -22,8 +24,19 @@ void SoundSystem::Play(FMOD::Channel **ch, const std::wstring &filename)
 	
 	FMOD::Sound *snd;
 
-	system_->createStream(mbs.c_str(), FMOD_LOOP_OFF, nullptr, &snd);
+	FMOD_RESULT res = system_->createSound(mbs.c_str(), FMOD_LOOP_OFF, nullptr, &snd);
+    
 	system_->playSound(snd, nullptr, false, ch);
+    
+    if(res == FMOD_ERR_FORMAT)
+    {
+        QMessageBox msg;
+        msg.setText("Invalid format");
+        msg.setInformativeText("Track \"" + QString::fromStdWString(filename) + "\" was skipped.");
+        msg.setStandardButtons(QMessageBox::Ok);
+        
+        msg.exec();
+    }
 }
 
 void SoundSystem::Pause(FMOD::Channel *ch)
