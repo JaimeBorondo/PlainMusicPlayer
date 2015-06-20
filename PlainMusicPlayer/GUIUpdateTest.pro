@@ -47,6 +47,9 @@ else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -lfmod_vc
 INCLUDEPATH += $$PWD/inc/fmod
 DEPENDPATH += $$PWD/inc/fmod
 
+INCLUDEPATH +=$$PWD/inc/bass24/c
+LIBS += -L$$PWD/lib/ -lbass
+
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -lfmod64_vc
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -lfmod64_vc
 

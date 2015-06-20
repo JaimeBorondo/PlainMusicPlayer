@@ -9,7 +9,7 @@
 
 Song::Song(const SongInfo &info) : info_(info)
 {
-    channel_ = nullptr;
+    channel_ = 0;
 }
 
 Song::~Song()
@@ -32,34 +32,26 @@ void Song::Stop()
 
 void Song::SetVolume(float vol)
 {
-    if(channel_ != nullptr)
-        channel_->setVolume(vol);
+    BASS_ChannelSetAttribute(channel_,BASS_ATTRIB_VOL,vol);
 }
 
 bool Song::isPlaying()
 {
-    bool isplaying = false;
-
-    if (channel_ != nullptr)
-        channel_->isPlaying(&isplaying);
-
-    return isplaying;
+   return BASS_ChannelIsActive(channel_) == BASS_ACTIVE_PLAYING;
 }
 
 unsigned Song::GetPosition()
 {
-    unsigned retval = 0;
-
-    if (channel_ != nullptr)
-        channel_->getPosition(&retval, FMOD_TIMEUNIT_MS);
-
-    return retval/1000;
+    QWORD bytes = BASS_ChannelGetPosition(channel_, BASS_POS_BYTE);
+    return BASS_ChannelBytes2Seconds(channel_, bytes);
 }
 
 void Song::SetPosition(float pct)
 {
-    if (channel_ != nullptr)
-        channel_->setPosition(info_.get_length() * static_cast<unsigned>(pct * 1000), FMOD_TIMEUNIT_MS);
+    QWORD len_bytes = BASS_ChannelGetLength(channel_, BASS_POS_BYTE);
+    len_bytes *= pct;
+    
+    BASS_ChannelSetPosition(channel_, len_bytes, BASS_POS_BYTE);
 }
 
 unsigned Song::GetLength()

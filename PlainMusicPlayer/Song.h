@@ -6,6 +6,8 @@
 #include <string>
 #include <locale>
 
+#include "bass.h"
+
 class Song
 {
 public:
@@ -25,5 +27,5 @@ public:
 	unsigned GetLength();
 private:
 	const SongInfo &info_;
-	FMOD::Channel *channel_;
+	HCHANNEL channel_;
 };

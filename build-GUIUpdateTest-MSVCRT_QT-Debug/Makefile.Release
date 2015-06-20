@@ -14,10 +14,10 @@ CXX           = cl
 DEFINES       = -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNDEBUG
 CFLAGS        = -nologo -Zm200 -Zc:wchar_t -FS -O2 -MD -Zc:strictStrings -W3 $(DEFINES)
 CXXFLAGS      = -nologo -Zm200 -Zc:wchar_t -FS -O2 -MD -Zc:strictStrings -GR -W3 -w34100 -w34189 -EHsc $(DEFINES)
-INCPATH       = -I"..\PlainMusicPlayer" -I"." -I"..\PlainMusicPlayer\inc\taglib" -I"..\PlainMusicPlayer\inc\fmod" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtANGLE" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore" -I"release" -I"." -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\win32-msvc2013" 
+INCPATH       = -I"..\PlainMusicPlayer" -I"." -I"..\PlainMusicPlayer\inc\taglib" -I"..\PlainMusicPlayer\inc\fmod" -I"..\PlainMusicPlayer\inc\bass24\c" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtANGLE" -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore" -I"release" -I"." -I"..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\mkspecs\win32-msvc2013" 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\qtmain.lib shell32.lib /LIBPATH:D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\ D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\tag.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod_vc.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod64_vc.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmodL64_vc.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Widgets.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Gui.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\qtmain.lib shell32.lib /LIBPATH:D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\ D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\tag.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod_vc.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\bass.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmod64_vc.lib D:\GitHub\PlainMusicPlayer\PlainMusicPlayer\lib\\fmodL64_vc.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Widgets.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Gui.lib D:\Qt\Qt5.4.1\5.4\msvc2013_64\lib\Qt5Core.lib 
 QMAKE         = D:\Qt\Qt5.4.1\5.4\msvc2013_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -237,6 +237,7 @@ release\moc_mainwindow.cpp: ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidget
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qlist.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qalgorithms.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qiterator.h \
+		..\PlainMusicPlayer\inc\bass24\c\list \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbytearraylist.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcoreevent.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qscopedpointer.h \
@@ -330,7 +331,7 @@ release\moc_mainwindow.cpp: ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidget
 		..\PlainMusicPlayer\Playlist.h \
 		..\PlainMusicPlayer\PlaylistInfo.h \
 		..\PlainMusicPlayer\mainwindow.h
-	D:\Qt\Qt5.4.1\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/mkspecs/win32-msvc2013 -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/taglib -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/fmod -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtGui -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtANGLE -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtCore -I. ..\PlainMusicPlayer\mainwindow.h -o release\moc_mainwindow.cpp
+	D:\Qt\Qt5.4.1\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/mkspecs/win32-msvc2013 -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/taglib -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/fmod -ID:/GitHub/PlainMusicPlayer/PlainMusicPlayer/inc/bass24/c -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtGui -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtANGLE -ID:/Qt/Qt5.4.1/5.4/msvc2013_64/include/QtCore -I. ..\PlainMusicPlayer\mainwindow.h -o release\moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -399,6 +400,7 @@ release\main.obj: ..\PlainMusicPlayer\main.cpp ..\PlainMusicPlayer\mainwindow.h 
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qlist.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qalgorithms.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qiterator.h \
+		..\PlainMusicPlayer\inc\bass24\c\list \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbytearraylist.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcoreevent.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qscopedpointer.h \
@@ -501,7 +503,8 @@ release\main.obj: ..\PlainMusicPlayer\main.cpp ..\PlainMusicPlayer\mainwindow.h 
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QStyleFactory \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qstylefactory.h \
 		..\PlainMusicPlayer\SoundSystem.h \
-		..\PlainMusicPlayer\Library.h
+		..\PlainMusicPlayer\Library.h \
+		..\PlainMusicPlayer\inc\bass24\c\bass.h
 
 release\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\mainwindow.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
@@ -550,6 +553,7 @@ release\mainwindow.obj: ..\PlainMusicPlayer\mainwindow.cpp ..\PlainMusicPlayer\m
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qlist.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qalgorithms.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qiterator.h \
+		..\PlainMusicPlayer\inc\bass24\c\list \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbytearraylist.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcoreevent.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qscopedpointer.h \
@@ -754,12 +758,117 @@ release\Song.obj: ..\PlainMusicPlayer\Song.cpp ..\PlainMusicPlayer\Song.h \
 		..\PlainMusicPlayer\inc\taglib\tiostream.h \
 		..\PlainMusicPlayer\inc\taglib\tstringlist.h \
 		..\PlainMusicPlayer\inc\taglib\tlist.h \
+		..\PlainMusicPlayer\inc\bass24\c\list \
 		..\PlainMusicPlayer\inc\taglib\tlist.tcc \
 		..\PlainMusicPlayer\inc\taglib\trefcounter.h \
 		..\PlainMusicPlayer\inc\taglib\tbytevectorlist.h \
 		..\PlainMusicPlayer\inc\taglib\audioproperties.h
 
-release\SoundSystem.obj: ..\PlainMusicPlayer\SoundSystem.cpp 
+release\SoundSystem.obj: ..\PlainMusicPlayer\SoundSystem.cpp ..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\QMessageBox \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qmessagebox.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qdialog.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qwidget.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qwindowdefs.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qglobal.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qconfig.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qfeatures.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qsystemdetection.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qprocessordetection.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qtypeinfo.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qtypetraits.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qsysinfo.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qlogging.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qflags.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbasicatomic.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qgenericatomic.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_armv7.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_armv6.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_armv5.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_ia64.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_mips.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_x86.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_gcc.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qatomic_unix.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qglobalstatic.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qmutex.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qnumeric.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qobjectdefs.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qnamespace.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qobject.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstring.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qchar.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbytearray.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qrefcount.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qarraydata.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstringbuilder.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qlist.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qalgorithms.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qiterator.h \
+		..\PlainMusicPlayer\inc\bass24\c\list \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbytearraylist.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcoreevent.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qscopedpointer.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qmetatype.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qisenum.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qobject_impl.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qmargins.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qpaintdevice.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qrect.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qsize.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qpoint.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qpalette.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qcolor.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qrgb.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstringlist.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qdatastream.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qiodevice.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qpair.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qregexp.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qstringmatcher.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qbrush.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qvector.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qmatrix.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qpolygon.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qregion.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qline.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtransform.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qpainterpath.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qimage.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qpixelformat.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qpixmap.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qsharedpointer.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qshareddata.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qhash.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qfont.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qfontmetrics.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qfontinfo.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qcursor.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qkeysequence.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qevent.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qvariant.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qmap.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qdebug.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qtextstream.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qlocale.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qset.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qurl.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qurlquery.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qfile.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qfiledevice.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qvector2d.h \
+		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui\qtouchdevice.h
 
 release\PlaylistManager.obj: ..\PlainMusicPlayer\PlaylistManager.cpp ..\PlainMusicPlayer\PlaylistManager.h \
 		..\PlainMusicPlayer\Playlist.h \
@@ -816,6 +925,7 @@ release\SongInfoPTRModel.obj: ..\PlainMusicPlayer\SongInfoPTRModel.cpp ..\PlainM
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qlist.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qalgorithms.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qiterator.h \
+		..\PlainMusicPlayer\inc\bass24\c\list \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qbytearraylist.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qmetatype.h \
 		..\..\..\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore\qvarlengtharray.h \
@@ -866,6 +976,7 @@ release\SongInfo.obj: ..\PlainMusicPlayer\SongInfo.cpp ..\PlainMusicPlayer\SongI
 		..\PlainMusicPlayer\inc\taglib\tiostream.h \
 		..\PlainMusicPlayer\inc\taglib\tstringlist.h \
 		..\PlainMusicPlayer\inc\taglib\tlist.h \
+		..\PlainMusicPlayer\inc\bass24\c\list \
 		..\PlainMusicPlayer\inc\taglib\tlist.tcc \
 		..\PlainMusicPlayer\inc\taglib\trefcounter.h \
 		..\PlainMusicPlayer\inc\taglib\tbytevectorlist.h \
