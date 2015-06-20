@@ -11,13 +11,16 @@
 
 int main(int argc, char *argv[])
 {
+#ifndef TESTPLAYBACK_JAIME
     SoundSystem::Initialize();
-
+#endif
+    
+#ifdef TESTPLAYBACK_JAIME
     int device = -1; // Default Sounddevice
     int freq = 44100; // Sample rate (Hz)
     HSTREAM streamHandle; // Handle for sample
     HCHANNEL channel; // Handle for open channel of the sample
-  
+   
     int err = 0;
     
     /* Initialize output device */
@@ -29,7 +32,8 @@ int main(int argc, char *argv[])
     
     channel = BASS_ChannelPlay(streamHandle, TRUE);
     err = BASS_ErrorGetCode();
-    
+#endif    
+
     QApplication a(argc, argv);
     
     a.setStyle(QStyleFactory::create("Fusion"));

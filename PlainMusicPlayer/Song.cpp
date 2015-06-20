@@ -43,20 +43,25 @@ bool Song::isPlaying()
 unsigned Song::GetPosition()
 {
     QWORD bytes = BASS_ChannelGetPosition(channel_, BASS_POS_BYTE);
-    return BASS_ChannelBytes2Seconds(channel_, bytes);
+    
+    int code = BASS_ErrorGetCode();
+    
+    return static_cast<unsigned>(BASS_ChannelBytes2Seconds(channel_, bytes));
 }
 
 void Song::SetPosition(float pct)
 {
     QWORD len_bytes = BASS_ChannelGetLength(channel_, BASS_POS_BYTE);
-    len_bytes *= pct;
+    len_bytes = static_cast<QWORD>(static_cast<float>(len_bytes) * pct);
     
     BASS_ChannelSetPosition(channel_, len_bytes, BASS_POS_BYTE);
 }
 
 unsigned Song::GetLength()
 {
-    return info_.get_length();
+    QWORD byteslen = BASS_ChannelGetLength(channel_, BASS_POS_BYTE);
+    return BASS_ChannelBytes2Seconds(channel_, byteslen);
+//    return info_.get_length();
 }
 
 std::wstring Song::GetDisplayName()

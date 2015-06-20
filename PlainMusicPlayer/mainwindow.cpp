@@ -18,6 +18,7 @@ void MainWindow::Update()
 {
     PlaylistManager::UpdateCurrentPlaylist();
     Song *s = PlaylistManager::GetCurrentSong();
+    
     if(s != nullptr)
     {
        ui->NowPlaying->setText(QString::fromStdWString(s->GetDisplayName()));
@@ -36,7 +37,7 @@ void MainWindow::scrobbletimer()
         unsigned len = s->GetLength();
         unsigned pos = s->GetPosition();
 
-        int value = (1000*pos) / len;
+        int value = (pos) / len;
         ui->horizontalSlider->setValue(value);
 
         unsigned min_c = pos / 60;
