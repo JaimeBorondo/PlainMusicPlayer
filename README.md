@@ -10,7 +10,7 @@ if I see that I can expand it easily, maybe add a few features on top of that.
 Here is a list of the libraries I am currently using or plan to use while 
 developing this application.
 
-#### FMOD
+#### BASS
  For audio playback and channel management
         
 #### TagLib
