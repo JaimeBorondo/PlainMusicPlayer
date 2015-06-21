@@ -21,6 +21,7 @@ public:
     std::wstring GetDisplayName();
 
 	bool isPlaying();
+    bool isFinished();
 
 	unsigned GetPosition();
 	void SetPosition(float pct);

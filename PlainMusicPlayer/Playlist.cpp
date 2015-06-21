@@ -114,7 +114,7 @@ void Playlist::Update()
 	if (current_song_ != nullptr)
 	{
 		//If position is reported as 0 and it is not playing anymore, it's over
-		if (current_song_->GetPosition() == 0 && !current_song_->isPlaying())
+		if (current_song_->isFinished())
 			NextSong();
 	}
 }

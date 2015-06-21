@@ -35,6 +35,8 @@ class Ui_MainWindow
 {
 public:
     QAction *actionAdd_Songs_To_Libary;
+    QAction *actionLoad_Library;
+    QAction *actionSave_Library;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
     QSplitter *splitter;
@@ -70,6 +72,10 @@ public:
         MainWindow->setSizePolicy(sizePolicy);
         actionAdd_Songs_To_Libary = new QAction(MainWindow);
         actionAdd_Songs_To_Libary->setObjectName(QStringLiteral("actionAdd_Songs_To_Libary"));
+        actionLoad_Library = new QAction(MainWindow);
+        actionLoad_Library->setObjectName(QStringLiteral("actionLoad_Library"));
+        actionSave_Library = new QAction(MainWindow);
+        actionSave_Library->setObjectName(QStringLiteral("actionSave_Library"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
@@ -134,7 +140,7 @@ public:
         previousButton->setObjectName(QStringLiteral("previousButton"));
         previousButton->setMaximumSize(QSize(30, 25));
         QIcon icon;
-        icon.addFile(QStringLiteral("../../../Downloads/Previous.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral("../../../My Downloads/documents-export-2015-06-21/Previous.png"), QSize(), QIcon::Normal, QIcon::Off);
         previousButton->setIcon(icon);
 
         PrevPlayNext_Controls->addWidget(previousButton);
@@ -143,8 +149,8 @@ public:
         playpauseButton->setObjectName(QStringLiteral("playpauseButton"));
         playpauseButton->setMaximumSize(QSize(30, 25));
         QIcon icon1;
-        icon1.addFile(QStringLiteral("../../../Downloads/play.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon1.addFile(QStringLiteral("../../../Downloads/Pause.png"), QSize(), QIcon::Normal, QIcon::On);
+        icon1.addFile(QStringLiteral("../../../My Downloads/documents-export-2015-06-21/play.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral("../../../My Downloads/documents-export-2015-06-21/Pause.png"), QSize(), QIcon::Normal, QIcon::On);
         playpauseButton->setIcon(icon1);
         playpauseButton->setCheckable(true);
         playpauseButton->setFlat(false);
@@ -155,7 +161,7 @@ public:
         nextButton->setObjectName(QStringLiteral("nextButton"));
         nextButton->setMaximumSize(QSize(30, 25));
         QIcon icon2;
-        icon2.addFile(QStringLiteral("../../../Downloads/Next.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral("../../../My Downloads/documents-export-2015-06-21/Next.png"), QSize(), QIcon::Normal, QIcon::Off);
         nextButton->setIcon(icon2);
 
         PrevPlayNext_Controls->addWidget(nextButton);
@@ -254,7 +260,7 @@ public:
         pushButton->setEnabled(false);
         pushButton->setMaximumSize(QSize(16777215, 25));
         QIcon icon3;
-        icon3.addFile(QStringLiteral("../../../Downloads/volume.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QStringLiteral("../../../My Downloads/documents-export-2015-06-21/volume.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon3);
         pushButton->setAutoDefault(false);
         pushButton->setFlat(true);
@@ -295,6 +301,8 @@ public:
 
         menuBar->addAction(menuFile->menuAction());
         menuFile->addAction(actionAdd_Songs_To_Libary);
+        menuFile->addAction(actionLoad_Library);
+        menuFile->addAction(actionSave_Library);
 
         retranslateUi(MainWindow);
 
@@ -304,7 +312,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Plain Music Player", 0));
-        actionAdd_Songs_To_Libary->setText(QApplication::translate("MainWindow", "Add Songs To Libary", 0));
+        actionAdd_Songs_To_Libary->setText(QApplication::translate("MainWindow", "Add Songs To Library", 0));
+        actionLoad_Library->setText(QApplication::translate("MainWindow", "Load Library", 0));
+        actionSave_Library->setText(QApplication::translate("MainWindow", "Save Library", 0));
         previousButton->setText(QString());
         playpauseButton->setText(QString());
         nextButton->setText(QString());

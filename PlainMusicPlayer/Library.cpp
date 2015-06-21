@@ -30,6 +30,7 @@ Playlist Library::ToPlaylist()
 	return Playlist(pinfo);
 }
 
+
 //TopLevelLibrary definition begins here
 std::vector<const SongInfo *> TopLevelLibrary::AddSongs(const std::vector<std::wstring> &files)
 {
@@ -48,6 +49,16 @@ std::vector<const SongInfo *> TopLevelLibrary::AddSongs(const std::vector<std::w
 		by_artist_[tmp.get_artist()].AddSong(&song_db_[ws]);
 		by_album_[tmp.get_album()].AddSong(&song_db_[ws]);
 	}
+    
+    return ret;
+}
+
+
+std::vector<const SongInfo *> TopLevelLibrary::DumpSongs()
+{
+    std::vector<const SongInfo *> ret;
+    for(const std::pair<std::wstring, const SongInfo &> &info : song_db_)
+        ret.push_back(&info.second);
     
     return ret;
 }

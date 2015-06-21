@@ -13,6 +13,8 @@
 #include <QErrorMessage>
 
 #include <iostream>
+#include <fstream>
+#include <codecvt>
 
 void MainWindow::Update()
 {
@@ -36,8 +38,11 @@ void MainWindow::scrobbletimer()
     {
         unsigned len = s->GetLength();
         unsigned pos = s->GetPosition();
-
-        int value = (pos) / len;
+        
+        int maximum = ui->horizontalSlider->maximum();
+        int minimum = ui->horizontalSlider->minimum();
+        
+        int value = minimum + ((maximum - minimum) * (pos) / len);
         ui->horizontalSlider->setValue(value);
 
         unsigned min_c = pos / 60;
@@ -97,6 +102,8 @@ MainWindow::~MainWindow()
     delete mainupdatetimer;
     delete scrobble_timer;
     delete nowplaying;
+    
+    BASS_Free();
 }
 
 void MainWindow::AddSongs(bool)
@@ -385,12 +392,59 @@ void MainWindow::PlaylistFromLibrary()
     playlists_map_[L"Now Playing"].pl = PlaylistInfo(PlaylistManager::GetCurrentSongList());    
 }
 
+void MainWindow::SaveMusicLibrary(bool)
+{
+    QString filename = QFileDialog::getSaveFileName();
+    
+    const std::vector<const SongInfo *> songs = TopLevelLibrary::DumpSongs();
+    std::wofstream save(filename.toStdWString().c_str(), std::ios::out | std::ios::binary);
+    save.imbue(std::locale(save.getloc(), new std::codecvt_utf8_utf16<wchar_t>));
+    
+    //Really only save filenames for now
+    for(const SongInfo *p : songs)
+    {
+        save << p->get_filename() << std::endl;
+    }
+}
+
+void MainWindow::LoadMusicLibrary(bool)
+{
+    QString filename = QFileDialog::getOpenFileName();
+    std::wifstream load(filename.toStdWString().c_str(), std::ios::out | std::ios::binary);
+    load.imbue(std::locale(load.getloc(), new std::codecvt_utf8_utf16<wchar_t>));
+    
+    std::vector<std::wstring> filenames;
+    
+    std::wstring line;
+    while (std::getline(load, line))
+    {
+        if(line == L"")
+            break;
+        
+        filenames.push_back(line);
+    }
+    
+    std::vector<const SongInfo *> songs = TopLevelLibrary::AddSongs(filenames);
+
+    for(const SongInfo *sinfo : songs)
+    {
+        all_songs_model.append(sinfo);
+        by_artist_[sinfo->get_artist()].append(sinfo);
+        by_album_[sinfo->get_album()].append(sinfo);
+    }
+    ui->LibraryMenu->setCurrentItem(all);
+
+    UpdateLibrary();
+}
 
 void MainWindow::ConnectSignals()
 {
     connect(ui->LibraryMenu, SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(onCustomContextMenu(const QPoint &)));
     connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(onCustomContextMenu_table(const QPoint &)));
     connect(ui->actionAdd_Songs_To_Libary, SIGNAL(triggered(bool)),this, SLOT(AddSongs(bool)));
+    connect(ui->actionSave_Library, SIGNAL(triggered(bool)),this,SLOT(SaveMusicLibrary(bool)));
+    connect(ui->actionLoad_Library, SIGNAL(triggered(bool)),this,SLOT(LoadMusicLibrary(bool)));
+    
     connect(ui->tableView, SIGNAL(doubleClicked(const QModelIndex &)),this,SLOT(SongDoubleClicked(const QModelIndex &)));
     connect(ui->horizontalSlider, SIGNAL(sliderReleased()),this, SLOT(scrobblereleased()));
     connect(ui->volumeslider, SIGNAL(valueChanged(int)),this,SLOT(SetVolume(int)));

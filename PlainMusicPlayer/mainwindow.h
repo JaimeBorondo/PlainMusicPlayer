@@ -33,6 +33,9 @@ public slots:
 
 private slots:
     void AddSongs(bool);
+    void SaveMusicLibrary(bool);
+    void LoadMusicLibrary(bool);
+    
     void PlayFromCurrent();
     void SongDoubleClicked(const QModelIndex &i);
     void scrobblereleased();

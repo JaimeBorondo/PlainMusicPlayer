@@ -31,6 +31,7 @@ public:
     static Playlist PlaylistFromArtist(const std::wstring &artist);
     static Playlist PlaylistFromAlbum(const std::wstring &album);
 
+    static std::vector<const SongInfo *> DumpSongs();
 private:
 	//Indexed by filename, pointer validity remains between insertions
     static std::map<std::wstring, SongInfo> song_db_;
